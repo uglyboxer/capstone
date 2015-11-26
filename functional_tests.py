@@ -16,7 +16,8 @@ class NewVisitorTest(unittest.TestCase):
         self.browser.get('http://localhost:8000')
 
         # User sees "Finnegan" in title bar
-        assert 'Finnegan' in self.browser.title
+        assert 'Finnegan' in self.browser.title, "Browser title was " +\
+                                                  self.browser.title
 
         # User sees "Finnegan" in header text
         header_text = self.browser.find_element_by_tag_name('h1').text
@@ -24,12 +25,12 @@ class NewVisitorTest(unittest.TestCase):
 
         # A window on the right side of the screen shows a handwritten
         # number.
-        input_window = self.browser.find_element_by_id('input_window')
-        self.assertEqual(input_window.get_attribute('placeholder'), '4')
+        input_window = self.browser.find_element_by_tag_name('canvas').text
+        self.assertIn('4', input_window)
 
         # A button to submit 'nothing' is presented on the left side
-        sub_button = self.browser.find_element_by_tag_name('button')
-        self.assertEqual(sub_button.text, 'Submit')
+        sub_button = self.browser.find_element_by_id('sub_button')
+        self.assertEqual(sub_button.get_attribute('value'), 'Submit')
 
         self.fail('Finish the tests!')
 
