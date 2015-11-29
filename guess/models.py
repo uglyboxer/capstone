@@ -1,3 +1,8 @@
 from django.db import models
+from django.contrib.postgres.fields import ArrayField
 
-# Create your models here.
+
+class Drawing(models.Model):
+
+    values_array = ArrayField(models.FloatField(default=0))
+    guess = models.IntegerField(default=None)
