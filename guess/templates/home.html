@@ -65,8 +65,8 @@
     </div> -->
     <form id='sketch_div' action='/' method='post'>
     {% csrf_token %}
-    <a href="#colors_sketch" data-download="png" style="float: right; width: 100px;">Download</a>
     <canvas id="colors_sketch" width="128" height="128"></canvas>
+    <a id='sub_button' href="#colors_sketch" data-download="png"><button>Submit</button></a>
     </form>
 
     {{ info }}
@@ -75,7 +75,6 @@
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script src='../static/js.cookie.js'></script>
     <script src="../static/sketch.js"></script>
-    <!-- // <script src='../static/buttons.js'></script> -->
 
     </div><!-- /.container -->
 

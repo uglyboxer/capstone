@@ -5,17 +5,17 @@ To allow for easily switching between datasets and hyperparameters.
 
 """
 import csv
-import pickle
+import dill
 import numpy as np
 from sklearn import datasets, utils
 
 # from matplotlib import cm
 # from matplotlib import pyplot as plt
 
-from network import Network
+from finnegan.network import Network
 
 
-def run_scikit_digits(epochs, layers, neuron_count):
+def run_scikit_digits(epochs=0, layers=0, neuron_count=0):
     """ Run Handwritten Digits dataset from Scikit-Learn.  Learning set is split
     into 70% for training, 15% for testing, and 15% for validation.
 
@@ -51,18 +51,19 @@ def run_scikit_digits(epochs, layers, neuron_count):
     # network.visualization(training_set[11], answers[11])
     # network.visualization(training_set[12], answers[12])
 
-    # network = Network(layers, neuron_count, training_set[0])
-    # network.train(training_set, answers, epochs)
-    # f = open('my_net.pickle', 'wb')
-    fr = open('my_net.pickle', 'rb')
-    # pickle.dump(network, f)
-    network = pickle.load(fr)
-    fr.close()
-    # f.close()
-    guess_list = network.run_unseen(testing_set)
-    network.report_results(guess_list, answers_to_test)
-    valid_list = network.run_unseen(validation_set)
-    network.report_results(valid_list, validation_answers)
+    network = Network(layers, neuron_count, training_set[0])
+    network.train(training_set, answers, epochs)
+    f = open('my_net.pickle', 'wb')
+    # fr = open('my_net.pickle', 'rb')
+    dill.dump(network, f)
+    # network = pickle.load(fr)
+    # fr.close()
+    f.close()
+    # guess_list = network.run_unseen(testing_set)
+    return network.run_unseen(testing_set)
+    # network.report_results(guess_list, answers_to_test)
+    # valid_list = network.run_unseen(validation_set)
+    # network.report_results(valid_list, validation_answers)
 
 
 def run_mnist(epochs, layers, neuron_count):

@@ -127,3 +127,6 @@ class Layer:
 
         self.weights += (np.outer(self.mr_input, self.deltas) * self.l_rate)
         return
+
+if __name__ == '__main__':
+    pass

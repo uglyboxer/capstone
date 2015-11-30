@@ -8,7 +8,7 @@ Recurrent Neural Networks via extensive visualizations.
 import numpy as np
 from sklearn.preprocessing import normalize
 
-from layer import Layer
+from finnegan.layer import Layer
 
 # from matplotlib import cm
 # from matplotlib import pyplot as plt
