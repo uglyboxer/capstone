@@ -1,6 +1,7 @@
 from django.shortcuts import render
 from django.http import HttpResponse
 from guess.models import Drawing
+import numpy as np
 
 from finnegan.img_handler import downsize
 from mini_net import run_mnist
@@ -24,10 +25,11 @@ def parse_data(request):
                 temp_array = info.split(',')
                 img_array = [float(x) for x in temp_array[3::4]]
                 small_image = downsize(img_array, 194, 28)
+                small_image_list = small_image.flatten().tolist()
                 try:
                     net_guess = run_mnist(small_image)[0]
                     val_guess = net_guess[0]
-                    net_confidence = float(net_guess[1])*100
+                    net_confidence = round(float(net_guess[1])*100, 2)
 
                 except:
                     logger.exception('Why oh why?')
@@ -36,13 +38,15 @@ def parse_data(request):
             else:
                 img_array = None
 
-            Drawing.objects.create(values_array=img_array, guess=val_guess,
-                                   confidence=net_confidence)
+            Drawing.objects.create(values_array=img_array,                                  
+                                   guess=val_guess,
+                                   confidence=net_confidence,
+                                   tiny_array=small_image_list)
             return HttpResponse()
     except:
         logger.exception('New way')
         logger.info(net_confidence)
-    return render(request, 'holder.html', {'info': 'x'})
+    return render(request, 'holder.html', {'info': net_confidence})
 
 
 def show_data(request):

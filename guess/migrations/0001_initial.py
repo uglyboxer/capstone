@@ -14,9 +14,11 @@ class Migration(migrations.Migration):
         migrations.CreateModel(
             name='Drawing',
             fields=[
-                ('id', models.AutoField(primary_key=True, serialize=False, verbose_name='ID', auto_created=True)),
-                ('values_array', django.contrib.postgres.fields.ArrayField(size=None, base_field=models.FloatField(default=0))),
+                ('id', models.AutoField(verbose_name='ID', auto_created=True, serialize=False, primary_key=True)),
+                ('values_array', django.contrib.postgres.fields.ArrayField(size=None, base_field=models.FloatField(default=0.0))),
                 ('guess', models.IntegerField(default=None)),
+                ('confidence', models.FloatField(default=None)),
+                ('tiny_array', django.contrib.postgres.fields.ArrayField(size=None, default=[], base_field=models.FloatField(default=0.0))),
             ],
         ),
     ]
