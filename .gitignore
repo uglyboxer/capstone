@@ -2,3 +2,5 @@ db.sqlite3
 *.pyc
 train.csv
 badness.log
+fool.html
+img_the_scream.jpg

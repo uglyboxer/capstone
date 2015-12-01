@@ -75,14 +75,16 @@ var __slice = Array.prototype.slice;
       var csrftoken = Cookies.get('csrftoken');
       var ctx=this.el.getContext("2d");
       var imgPixels = ctx.getImageData(0, 0, this.el.width, this.el.height);
-      var payload = imgPixels["data"].toString();
+      var payloadInfo = imgPixels.data;
+      var payload = Array.prototype.slice.call(payloadInfo).toString();
       $.post('sketch/', { csrfmiddlewaretoken: csrftoken, 'payload': payload },
-        function(cbdata) {
-            console.log(cbdata);
-            window.location.href = 'report/';
-            
+      function(cbdata) {
+        console.log(cbdata);
+        window.location.href = 'report/';
         });
+        
     };
+
     Sketch.prototype.set = function(key, value) {
       this[key] = value;
       return this.canvas.trigger("sketch.change" + key, value);
