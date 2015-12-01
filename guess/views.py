@@ -24,7 +24,8 @@ def parse_data(request):
             img_array = [float(x) for x in temp_array[3::4]]
             small_image = downsize(img_array, 194, 28)
             try:
-                net_guess = run_mnist(small_image)
+                net_guess = run_mnist(small_image)[0]
+
             except:
                 logger.exception('Why oh why?')
                 return render(request, 'holder.html', {'info': 88})
@@ -32,7 +33,7 @@ def parse_data(request):
         else:
             img_array = None
 
-        Drawing.objects.create(values_array=img_array, guess=net_guess[0])
+        Drawing.objects.create(values_array=img_array, guess=net_guess)
         return HttpResponse()
     return render(request, 'holder.html', {'info': 'x'})
 
