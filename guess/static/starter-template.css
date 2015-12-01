@@ -18,7 +18,7 @@ canvas {
     margin: 1em auto;
 }
 
-#answer {
+.answer {
     displayer: block;
     height: 2em;
     text-align: center;

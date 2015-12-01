@@ -26,6 +26,8 @@ def parse_data(request):
                 small_image = downsize(img_array, 194, 28)
                 try:
                     net_guess = run_mnist(small_image)[0]
+                    val_guess = net_guess[0]
+                    net_confidence = float(net_guess[1])*100
 
                 except:
                     logger.exception('Why oh why?')
@@ -34,15 +36,18 @@ def parse_data(request):
             else:
                 img_array = None
 
-            Drawing.objects.create(values_array=img_array, guess=net_guess)
+            Drawing.objects.create(values_array=img_array, guess=val_guess,
+                                   confidence=net_confidence)
             return HttpResponse()
     except:
         logger.exception('New way')
-        logger.info(request.POST.get('payload'))
+        logger.info(net_confidence)
     return render(request, 'holder.html', {'info': 'x'})
 
 
 def show_data(request):
 
     net_guess = Drawing.objects.all().order_by('id').reverse()[0].guess
-    return render(request, 'report.html', {'guess': net_guess})
+    conf = Drawing.objects.all().order_by('id').reverse()[0].confidence
+    return render(request, 'report.html', {'guess': net_guess,
+                                           'confidence': conf})
