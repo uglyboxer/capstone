@@ -58,20 +58,17 @@
 
       <div class="starter-template">
         <h1>Neural Net Digit Recognizer</h1>
-        <p class="lead">Draw a digit (0-9), please.</p>
+        <p class="lead"></p>
       </div>
-       <!--    <div class="tools">
-        <a id='download_button' href="#colors_sketch" data-download="jpg" style="float: right; width: 100px;">Submit</a>
-    </div> -->
-    <form id='sketch_div' action='/' method='post'>
-    {% csrf_token %}
-    <canvas id="colors_sketch" width="194" height="194"></canvas>
-    <a id='sub_button' href="#colors_sketch" data-download="png"><button>Submit</button></a>
-    </form>
+
+    <!-- <canvas width="194" height="194"></canvas> -->
+ 
+
+    <h4 id='answer'>Looks like a {{ guess }}, to me!</h4>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
-    <script src='../static/js.cookie.js'></script>
-    <script src="../static/sketch.js"></script>
+  <!--   // <script src='../static/js.cookie.js'></script>
+    // <script src="../static/sketch.js"></script> -->
 
     </div><!-- /.container -->
 

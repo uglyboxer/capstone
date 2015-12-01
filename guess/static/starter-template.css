@@ -6,7 +6,7 @@ body {
   text-align: center;
 }
 
-#colors_sketch {
+canvas {
     display: block;
     border-style: solid;
     margin: 0 auto;
@@ -16,4 +16,10 @@ body {
     display: block;
     width: 10%;
     margin: 1em auto;
+}
+
+#answer {
+    displayer: block;
+    height: 2em;
+    text-align: center;
 }

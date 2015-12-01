@@ -1,5 +1,6 @@
 import numpy as np
 from skimage.transform import resize
+from skimage.util import crop
 # from matplotlib import pyplot as plt
 # from matplotlib import cm
 

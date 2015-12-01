@@ -3,16 +3,17 @@ from django.http import HttpResponse
 from guess.models import Drawing
 
 from finnegan.img_handler import downsize
-from mini_net import run_scikit_digits
+from mini_net import run_mnist
 
 import logging
 
 
-logging.basicConfig(filename='badness.log',level=logging.DEBUG)
+logging.basicConfig(filename='badness.log', level=logging.DEBUG)
 logger = logging.getLogger(__name__)
 
+
 def home_page(request):
-    return render(request, 'home.html', {'info': 'dummy'})
+    return render(request, 'home.html')
 
 
 def parse_data(request):
@@ -21,21 +22,22 @@ def parse_data(request):
         if info != "no info":
             temp_array = info.split(',')
             img_array = [float(x) for x in temp_array[3::4]]
-            small_image = downsize(img_array, 128, 8)
+            small_image = downsize(img_array, 194, 28)
             try:
-                net_guess = run_scikit_digits(small_image)
+                net_guess = run_mnist(small_image)
             except:
                 logger.exception('Why oh why?')
                 return render(request, 'holder.html', {'info': 88})
-
 
         else:
             img_array = None
 
         Drawing.objects.create(values_array=img_array, guess=net_guess[0])
-        return render(request, 'holder.html', {'info': net_guess[0]})
+        return HttpResponse()
     return render(request, 'holder.html', {'info': 'x'})
+
 
 def show_data(request):
 
-    return redirect('home')
+    net_guess = Drawing.objects.all().order_by('id').reverse()[0].guess
+    return render(request, 'report.html', {'guess': net_guess})

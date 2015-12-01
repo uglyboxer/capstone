@@ -21,6 +21,6 @@ from guess import views
 urlpatterns = [
     url(r'^$', views.home_page, name='home'),
     url(r'sketch/', views.parse_data, name='parse_data'),
-    url(r'results/', views.show_data, name='show_data'),
+    url(r'report/', views.show_data, name='show_data'),
     #url(r'^admin/', include(admin.site.urls)),
 ]

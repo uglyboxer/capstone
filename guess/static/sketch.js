@@ -36,7 +36,7 @@ var __slice = Array.prototype.slice;
         toolLinks: true,
         defaultTool: 'marker',
         defaultColor: '#000000',
-        defaultSize: 18
+        defaultSize: 16
       }, opts);
       this.painting = false;
       this.color = this.options.defaultColor;
@@ -79,7 +79,7 @@ var __slice = Array.prototype.slice;
       $.post('sketch/', { csrfmiddlewaretoken: csrftoken, 'payload': payload },
         function(cbdata) {
             console.log(cbdata);
-            window.location.href = 'results/';
+            window.location.href = 'report/';
             
         });
     };
