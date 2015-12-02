@@ -3,7 +3,7 @@ from django.http import HttpResponse
 from guess.models import Drawing
 import numpy as np
 
-from finnegan.img_handler import downsize
+from finnegan.img_handler import downsize, visualization
 from mini_net import run_mnist
 
 import logging
@@ -51,7 +51,6 @@ def parse_data(request):
 
 def show_data(request):
 
-    net_guess = Drawing.objects.all().order_by('id').reverse()[0].guess
-    conf = Drawing.objects.all().order_by('id').reverse()[0].confidence
-    return render(request, 'report.html', {'guess': net_guess,
-                                           'confidence': conf})
+    drawing_obj = Drawing.objects.all().order_by('id').reverse()[0]
+    return render(request, 'report.html', {'drawing_obj': drawing_obj})
+

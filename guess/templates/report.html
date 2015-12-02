@@ -61,16 +61,40 @@
         <p class="lead"></p>
       </div>
 
-<!--     <canvas id='repo1' width="194" height="194"></canvas>
-    <canvas id='repo2' width='28' height='28'></canvas> -->
+    <canvas id='repo1' width="194" height="194"></canvas>
+    <canvas id='repo2' width='28' height='28'></canvas>
  
 
-    <h4 class='answer'>Looks like a {{ guess }} to me!</h4>
-    <h4 class='answer'>I'm {{ confidence }}% sure.</h4>
+    <h4 class='answer'>Looks like a {{ drawing_obj.guess }} to me!</h4>
+    <h4 class='answer'>I'm {{ drawing_obj.confidence }}% sure.</h4>
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
     <script type="text/javascript">
+      var large_img = {{ drawing_obj.values_array }};
+      var small_img = {{ drawing_obj.tiny_array }};
+      var canvas = document.getElementById('repo1');
+      // var lg_img_array = Uint8ClampedArray.from(large_img);
+      var ctx = canvas.getContext('2d');
+      var imgData=ctx.createImageData(194,194);
+      for (var j=0; j<imgData.length; j++) {
+        imgData.data[j] = 0;
+      }
+      for (var i=0; i < large_img.length; i++) {
+        imgData.data[(i*4)+3] = large_img[i];
+      }
+      ctx.putImageData(imgData, 0, 0);
 
+      var canvas2 = document.getElementById('repo2');
+      // var lg_img_array = Uint8ClampedArray.from(large_img);
+      var ctx2 = canvas2.getContext('2d');
+      var imgData=ctx2.createImageData(28,28);
+      for (j=0; j<imgData.length; j++) {
+        imgData.data[j] = 0;
+      }
+      for (i=0; i < small_img.length; i++) {
+        imgData.data[(i*4)+3] = small_img[i];
+      }
+      ctx2.putImageData(imgData, 0, 0);
 
     </script>
     </div><!-- /.container -->
