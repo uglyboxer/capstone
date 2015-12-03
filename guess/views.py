@@ -1,4 +1,4 @@
-from django.shortcuts import render
+from django.shortcuts import render, redirect
 from django.http import HttpResponse
 from guess.models import Drawing
 import numpy as np
@@ -32,7 +32,6 @@ def parse_data(request):
                     net_confidence = round(float(net_guess[1])*100, 2)
 
                 except:
-                    logger.exception('Why oh why?')
                     return render(request, 'holder.html', {'info': 88})
 
             else:
@@ -41,7 +40,8 @@ def parse_data(request):
             Drawing.objects.create(values_array=img_array,                                  
                                    guess=val_guess,
                                    confidence=net_confidence,
-                                   tiny_array=small_image_list)
+                                   tiny_array=small_image_list,
+                                   correct=False)
             return HttpResponse()
     except:
         logger.exception('New way')
@@ -54,3 +54,21 @@ def show_data(request):
     drawing_obj = Drawing.objects.all().order_by('id').reverse()[0]
     return render(request, 'report.html', {'drawing_obj': drawing_obj})
 
+
+def valid_info(request):
+    obj = Drawing.objects.all().order_by('-id')[0]
+    if request.method == "POST":
+        if request.POST["valid"] == "correct":
+            obj.correct = True
+            obj.save()
+        else:
+            obj.correct = False
+            obj.save()
+
+    return redirect('/')
+
+def about(request):
+    return redirect("https://github.com/uglyboxer")
+
+def contact(request):
+    return redirect("https://github.com/uglyboxer")

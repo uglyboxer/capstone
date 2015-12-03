@@ -22,6 +22,9 @@ urlpatterns = [
     url(r'^$', views.home_page, name='home'),
     url(r'sketch/', views.parse_data, name='parse_data'),
     url(r'report/', views.show_data, name='show_data'),
-    url(r'#/', views.home_page, name='home')
-    #url(r'^admin/', include(admin.site.urls)),
+    url(r'#/', views.home_page, name='home'),
+    url(r'validate/', views.valid_info, name='valid'),
+    url(r'about/', views.about, name='about'),
+    url(r'contact/', views.contact, name='contact'),
+    # url(r'^admin/', include(admin.site.urls)),
 ]

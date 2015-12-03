@@ -3,7 +3,7 @@ import numpy as np
 
 from finnegan.network import Network
 
-def run_mnist(vector, epochs=0, layers=0, neuron_count=0):
+def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
     """ Run Mnist dataset and output a guess list on the Kaggle test_set
 
     Parameters
@@ -19,10 +19,10 @@ def run_mnist(vector, epochs=0, layers=0, neuron_count=0):
 
     Attributes
     ----------
-    target_values : list
-        The possible values for each training vector
 
     """
+    ans_train = []
+    train_set = []
 
     with open('train_ext.txt', 'r') as f:
         for line in f:
@@ -33,9 +33,13 @@ def run_mnist(vector, epochs=0, layers=0, neuron_count=0):
     ans_train = utils.resample(ans_train, random_state=2)
 
     network = Network(layers, neuron_count, train_set[0])
-    network.train(train_set, ans_train, epochs)
+    network.train(train_set[:91000], ans_train[:91000], epochs)
 
-    g = open('finnegan/my_net.pickle', 'wb')
+    guess_list = network.run_unseen(train_set[91000:])
+    network.report_results(guess_list, ans_train[91000:])
+    
+    file_name = 'finnegan/my_net_' + str(run_num) + '.pickle'
+    g = open(file_name, 'wb')
     pickle.dump(network, g)
     g.close()
     return None
@@ -43,6 +47,7 @@ def run_mnist(vector, epochs=0, layers=0, neuron_count=0):
 
 if __name__ == '__main__':
     epochs = 250
-    layers = 3
-    layer_list = [75, 73, 10]
-    run_mnist([], epochs, layers, layer_list)
+    layer_list_list = [[75, 73, 10], [85, 82, 81, 10], [65, 63, 62, 61, 10],
+                       [64, 63, 10], [35, 34, 34, 32, 28, 10], [52, 81, 10]]
+    for run_num, layer_list in enumerate(layer_list_list):
+        run_mnist(run_num, epochs, len(layer_list), layer_list)

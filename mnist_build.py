@@ -41,17 +41,18 @@ if __name__ == '__main__':
     temp_train = [np.array(elem, dtype=float) for elem in train_set]
     train_set = temp_train
 
-    for _ in range(10):
-        for idx, elem in enumerate(train_set):
-            x = elem.reshape((28, 28))
-            rand_ang = randrange(-120, 120)
-            y = spin_o_rama(x, rand_ang).flatten()
-            train_set.append(y)
-            ans_train.append(ans_train[idx])
+    with open('train_ext.txt', 'wb') as g:
+        for idx, elem in enumerate(train_set[:10]):
+            g.write(str(ans_train[idx]))
+            np.savetxt(g, elem)
 
-    with open('train_ext.txt', 'w') as g:
-        for idx, elem in enumerate(train_set):
-            g.writeline(ans_train[idx], elem)
+        for _ in range(5):
+            for idx, elem in enumerate(train_set[:10]):
+                x = elem.reshape((28, 28))
+                rand_ang = randrange(-120, 120)
+                y = spin_o_rama(x, rand_ang).flatten()
+                g.write(str(ans_train[idx]))
+                np.savetxt(g, y)
 
 
 
