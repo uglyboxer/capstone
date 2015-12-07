@@ -4,3 +4,8 @@ train.csv
 badness.log
 fool.html
 img_the_scream.jpg
+
+# Elastic Beanstalk Files
+.elasticbeanstalk/*
+!.elasticbeanstalk/*.cfg.yml
+!.elasticbeanstalk/*.global.yml
