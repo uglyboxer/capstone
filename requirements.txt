@@ -37,7 +37,6 @@ python-dateutil==2.4.2
 pytz==2015.7
 PyYAML==3.11
 requests==2.6.2
-scipy==0.16.1
 selenium==2.48.0
 setuptools-scm==1.9.0
 six==1.10.0
