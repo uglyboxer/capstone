@@ -1,7 +1,7 @@
 # finnegan
 ## by Cole Howard
 
-A custom neural net with a serious nod to [I Am Trask](http://iamtrask.github.io/2015/07/12/basic-python-network/) for recoginzing handwritten digits.  The neural net is pre-trained on the MNIST dataset (run on an AWS instance).  And the user input is rescaled and tested.
+A custom neural net for recoginzing handwritten digits, with a serious nod to [I Am Trask](http://iamtrask.github.io/2015/07/12/basic-python-network/).  The neural net is pre-trained on the MNIST dataset (run on an AWS instance).  And the user input is rescaled and tested.
 
 
 ## TODO
