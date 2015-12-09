@@ -5,6 +5,8 @@ An extinsible neural net designed to explore Convolutional Neural Networks and
 Recurrent Neural Networks via extensive visualizations.
 
 """
+from random import randrange
+
 import numpy as np
 from sklearn.preprocessing import normalize
 from skimage.transform import rotate
@@ -177,7 +179,7 @@ class Network:
                 target_vector = [0 if x != target else 1 for x in self.possible]
                 vector = np.array(vector).reshape(28, 28)
                 vector = vector.astype(float)
-                ang = randrange(-120, 120)
+                ang = randrange(-89, 89)
                 vector = rotate(vector, ang, mode='constant')
 
                 vector = vector.reshape(1, -1)
@@ -189,7 +191,7 @@ class Network:
 
             amt_off = np.mean(np.abs(self.layers[self.num_layers-1].error))
             print(amt_off)
-            if amt_off < .01:
+            if amt_off < .001:
                 break
 
     def run_unseen(self, test_set):

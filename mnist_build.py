@@ -25,8 +25,6 @@ def spin_o_rama(vector, ang):
 #     plt.show()
 
 
-
-
 if __name__ == '__main__':
     with open('train.csv', 'r') as f:
         reader = csv.reader(f)
@@ -41,18 +39,17 @@ if __name__ == '__main__':
     temp_train = [np.array(elem, dtype=float) for elem in train_set]
     train_set = temp_train
 
-    with open('train_ext.txt', 'wb') as g:
-        for idx, elem in enumerate(train_set[:10]):
-            g.write(str(ans_train[idx]))
-            np.savetxt(g, elem)
+    with open('train_ext.csv', 'w') as g:
+        filewriter = csv.writer(g)
+        for idx, elem in enumerate(train_set):
+            filewriter.writerow([ans_train[idx]] + elem.flatten().tolist())
 
         for _ in range(5):
-            for idx, elem in enumerate(train_set[:10]):
+            for idx, elem in enumerate(train_set):
                 x = elem.reshape((28, 28))
-                rand_ang = randrange(-120, 120)
+                rand_ang = randrange(-89, 89)
                 y = spin_o_rama(x, rand_ang).flatten()
-                g.write(str(ans_train[idx]))
-                np.savetxt(g, y)
+                filewriter.writerow([ans_train[idx]] + y.flatten().tolist())
 
 
 

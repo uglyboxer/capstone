@@ -1,5 +1,7 @@
-import pickle
+import csv, pickle
 import numpy as np
+
+from sklearn import utils
 
 from finnegan.network import Network
 
@@ -24,19 +26,25 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
     ans_train = []
     train_set = []
 
-    with open('train_ext.txt', 'r') as f:
-        for line in f:
-            ans_train.append(line[0])
-            train_set.append(line[1])
+    with open('train.csv', 'r') as f:
+        reader = csv.reader(f)
+        t = list(reader)
+        train = [[int(x) for x in y] for y in t[1:]]
+
+
+    ans_train = [x[0] for x in train]
+    train_set = [x[1:] for x in train]
+    ans_train.pop(0)
+    train_set.pop(0)
 
     train_set = utils.resample(train_set, random_state=2)
     ans_train = utils.resample(ans_train, random_state=2)
 
-    network = Network(layers, neuron_count, train_set[0])
-    network.train(train_set[:91000], ans_train[:91000], epochs)
+    network = Network(layers, neuron_count, train_set[1])
+    network.train(train_set, ans_train, epochs)
 
-    guess_list = network.run_unseen(train_set[91000:])
-    network.report_results(guess_list, ans_train[91000:])
+    # guess_list = network.run_unseen(train_set[91000:])
+    # network.report_results(guess_list, ans_train[91000:])
     
     file_name = 'finnegan/my_net_' + str(run_num) + '.pickle'
     g = open(file_name, 'wb')
@@ -47,7 +55,7 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
 
 if __name__ == '__main__':
     epochs = 250
-    layer_list_list = [[75, 73, 10], [85, 82, 81, 10], [65, 63, 62, 61, 10],
-                       [64, 63, 10], [35, 34, 34, 32, 28, 10], [52, 81, 10]]
+    layer_list_list = [[85, 82, 81, 10], [52, 81, 10], [110, 108, 10],
+                       [90, 60, 42, 10], [125, 123, 10], [42, 41, 40, 39, 10]]
     for run_num, layer_list in enumerate(layer_list_list):
         run_mnist(run_num, epochs, len(layer_list), layer_list)
