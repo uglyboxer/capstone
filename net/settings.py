@@ -25,7 +25,7 @@ SECRET_KEY = 'vi60(4nth@vta_d1ow@57l+0wko8bru)ir)a9lcuwza%g9nky2'
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
 
-ALLOWED_HOSTS = []
+ALLOWED_HOSTS = ['uglyboxer.pythonanywhere.com']
 
 
 # Application definition
