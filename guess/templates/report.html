@@ -70,8 +70,10 @@
     <h5 class='answer'>How'd I do?</h5>
     <form action='/validate/' method='post'>
       {% csrf_token %}
-      <input type="radio" name="valid" value="correct" checked> Right 
-      <input type="radio" name="valid" value="wrong"> Wrong
+      <input type="radio" name="valid" value="correct" checked> Right
+      <br>
+      <input type="radio" name="valid" value="wrong"> Wrong,
+       Actual Answer Should Be: <input type="text" name="actual" size='1'>
       <br>
       <input type="submit" value="Submit">
     </form>

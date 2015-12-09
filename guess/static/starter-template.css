@@ -14,12 +14,13 @@ canvas {
 
 #sub_button {
     display: block;
-    width: 10%;
+    width: 65px;
     margin: 1em auto;
 }
 
 .answer {
-    displayer: block;
+    display: block;
     height: 2em;
     text-align: center;
+    margin: 10px;
 }

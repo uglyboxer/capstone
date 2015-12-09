@@ -9,3 +9,4 @@ class Drawing(models.Model):
     confidence = models.FloatField(default=None)
     tiny_array = ArrayField(models.FloatField(default=0.0), default=[])
     correct = models.BooleanField(default=True)
+    actual = models.IntegerField(default=11)
