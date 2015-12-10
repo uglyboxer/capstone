@@ -5,6 +5,7 @@ of the orginal MNIST dataset
 
 import csv
 
+
 import numpy as np
 
 from random import randrange

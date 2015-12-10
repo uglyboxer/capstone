@@ -221,6 +221,7 @@ class Network:
             vector = vector.astype(float)
             temp = self._pass_through_net(normalize(vector, copy=False)[0],
                                           dropout=False)
+            temp = self._softmax(temp)
             guess_list.append((temp.argmax(), max(temp)))
         return guess_list
 
