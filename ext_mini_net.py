@@ -48,14 +48,14 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
     
     file_name = 'finnegan/my_net_' + str(run_num) + '.pickle'
     g = open(file_name, 'wb')
-    pickle.dump(network, g)
+    pickle.dump(network, g, protocol=4)
     g.close()
     return None
 
 
 if __name__ == '__main__':
-    epochs = 25
-    layer_list_list = [[83, 28, 10]]
+    epochs = 1
+    layer_list_list = [[25, 28, 10]]
     # layer_list_list = [[85, 82, 81, 10], [52, 81, 10], [110, 108, 10],
     #                    [90, 60, 42, 10], [125, 123, 10], [42, 41, 40, 39, 10]]
     for run_num, layer_list in enumerate(layer_list_list):
