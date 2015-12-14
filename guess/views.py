@@ -3,7 +3,7 @@ from django.shortcuts import render, redirect
 
 import numpy as np
 
-from guess.models import Drawing
+from guess.models import Drawing, Stats
 
 from finnegan.img_handler import downsize, visualization
 from mini_net import run_mnist
@@ -102,6 +102,17 @@ def valid_info(request):
             obj.save()
 
     return redirect('/')
+
+
+def stats_work(request):
+    """ Work out statistics for results """
+    digits = Stats.objects.all().order_by('digit')
+    payload = {}
+    for num in digits:
+        temp = {'number': num.digit, 'correct': num.correctly_guessed,
+                'incorrect': num.incorrectly_guessed}
+        payload.update(temp)
+    return render(request, 'stats_view.html', payload)
 
 
 def about(request):
