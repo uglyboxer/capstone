@@ -43,9 +43,51 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
     network = Network(layers, neuron_count, train_set[1])
     network.train(train_set, ans_train, epochs)
 
-    # guess_list = network.run_unseen(train_set[91000:])
-    # network.report_results(guess_list, ans_train[91000:])
+    for i in range(1, 7):
+        filename = 'train_' + i + '.csv'
+        with open(filename, 'r') as f:
+            reader = csv.reader(f)
+            t = list(reader)
+            train = [[int(x) for x in y] for y in t[1:]]
+
+
+        ans_train = [x[0] for x in train]
+        train_set = [x[1:] for x in train]
+        ans_train.pop(0)
+        train_set.pop(0)
+
+        train_set = utils.resample(train_set, random_state=2)
+        ans_train = utils.resample(ans_train, random_state=2)
+
+        network.train(train_set, ans_train, epochs)
+
+    with open('train_7.csv', 'r') as f:
+        reader = csv.reader(f)
+        t = list(reader)
+        train = [[int(x) for x in y] for y in t[1:]]
+
+    ans_train = [x[0] for x in train]
+    train_set = [x[1:] for x in train]
+    ans_train.pop(0)
+    train_set.pop(0)
+    guess_list = network.run_unseen(train_set)
+    print('Test Set')
+    network.report_results(guess_list, ans_train)
     
+    with open('train_8.csv', 'r') as f:
+        reader = csv.reader(f)
+        t = list(reader)
+        train = [[int(x) for x in y] for y in t[1:]]
+
+    ans_train = [x[0] for x in train]
+    train_set = [x[1:] for x in train]
+    ans_train.pop(0)
+    train_set.pop(0)
+    guess_list = network.run_unseen(train_set)
+    print('Validation Set')
+    network.report_results(guess_list, ans_train)
+
+
     file_name = 'finnegan/my_net_' + str(run_num) + '.pickle'
     g = open(file_name, 'wb')
     pickle.dump(network, g, protocol=4)

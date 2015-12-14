@@ -65,7 +65,7 @@ def run_mnist(vector, epochs=0, layers=0, neuron_count=0):
     # f = open('finnegan/my_net.pickle', 'wb')
     # pickle.dump(network, f)
     # f.close()
-    fr = open('finnegan/my_net.pickle', 'rb')
+    fr = open('finnegan/my_net_2.pickle', 'rb')
     network = pickle.load(fr)
     fr.close()
     return network.run_unseen([vector])
