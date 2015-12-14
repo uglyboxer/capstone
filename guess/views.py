@@ -1,5 +1,6 @@
 from django.http import HttpResponse
 from django.shortcuts import render, redirect
+from django.db.models import Sum
 
 import numpy as np
 
@@ -92,27 +93,38 @@ def valid_info(request):
 
     """
     obj = Drawing.objects.all().order_by('-id')[0]
+    
     if request.method == "POST":
         if request.POST["valid"] == "correct":
             obj.correct = True
             obj.save()
+            stat = Stats.objects.get(digit=obj.guess)
+            stat.correctly_guessed += 1
+            stat.save()
         else:
             obj.correct = False
             obj.actual = request.POST["actual"]
             obj.save()
+            fail_stat = Stats.objects.get(digit=obj.actual)
+            fail_stat.incorrectly_guessed += 1
+            fail_stat.save()
 
     return redirect('/')
 
 
 def stats_work(request):
     """ Work out statistics for results """
-    digits = Stats.objects.all().order_by('digit')
-    payload = {}
-    for num in digits:
+    digs = Stats.objects.all().order_by('digit')
+    tot_correct = digs.aggregate(Sum('correctly_guessed'))
+    tot_inc = digs.aggregate(Sum('incorrectly_guessed'))
+    payload_digits = []
+    for num in digs:
         temp = {'number': num.digit, 'correct': num.correctly_guessed,
                 'incorrect': num.incorrectly_guessed}
-        payload.update(temp)
-    return render(request, 'stats_view.html', payload)
+        payload_digits.append(temp)
+    return render(request, 'stats_view.html', {"digits": payload_digits, 
+                                               "tot_correct": tot_correct['correctly_guessed__sum'],
+                                               "tot_inc": tot_inc['incorrectly_guessed__sum']})
 
 
 def about(request):

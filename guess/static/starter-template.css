@@ -24,3 +24,8 @@ canvas {
     text-align: center;
     margin: 10px;
 }
+
+th, td {
+    text-align: center;
+    padding: 0 6px;
+}
