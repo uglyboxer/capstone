@@ -63,50 +63,53 @@
 
     <!-- Stats display -->
 
-    <h4> Drawn Number - Correctly Guessed</h4>
+    <div class='table-wrapper'>
     <div class='table-responsive'>
-    <table class="table-striped" class="correct">
-    <tbody>
-    <tr>
-      <th>Digit</th>
-      <th>Times Correct</th>
-    </tr>
-    {% for digit in digits %}
-    <tr>
-      <td>{{ digit.number }}</td>
-      <td>{{ digit.correct }}</td>
-    </tr>
-    {% endfor %}
-    <tr>
-    <td>Total</td><td>{{ tot_correct }}</td>
-    </tr>
-    </tbody>
+    <table class="table-striped">
+    <caption>Drawn Number - Correctly Guessed</caption>
+      <tbody>
+      <tr>
+        <th>Digit</th>
+        <th>Times Correct</th>
+      </tr>
+      {% for digit in digits %}
+      <tr>
+        <td>{{ digit.number }}</td>
+        <td>{{ digit.correct }}</td>
+      </tr>
+      {% endfor %}
+      <tr>
+        <td>Total</td><td>{{ tot_correct }}</td>
+      </tr>
+      </tbody>
     </table>
     </div>
 
-    <h4> Actual Numbers that were Incorrectly Guessed</h4>
+    
     <div class='table-responsive'>
-    <table class="table-striped" class="correct">
-    <tbody>
-    <tr>
-      <th>Digit</th>
-      <th>Times Incorrect</th>
-    </tr>
-    {% for digit in digits %}
-    <tr>
-      <td>{{ digit.number }}</td>
-      <td>{{ digit.incorrect }}</td>
-    </tr>
-    {% endfor %}
-    <tr>
-    <td>Total</td><td>{{ tot_inc }}</td>
-    </tr>
-    </tbody>
+    <table class="table-striped">
+    <caption>Digits That Were Misclassified</caption>
+      <tbody>
+        <tr>
+          <th>Digit</th>
+          <th>Occurances</th>
+        </tr>
+        {% for digit in digits %}
+        <tr>
+          <td>{{ digit.number }}</td>
+          <td>{{ digit.incorrect }}</td>
+        </tr>
+        {% endfor %}
+        <tr>
+          <td>Total</td><td>{{ tot_inc }}</td>
+        </tr>
+      </tbody>
     </table>
+    </div>
     </div>
 
 
-    <a href="/">Return Home</a>
+   <button class='stats_button'><a href="/">Return Home</a></button>
 
 
     <script src="https://ajax.googleapis.com/ajax/libs/jquery/2.1.3/jquery.min.js"></script>
