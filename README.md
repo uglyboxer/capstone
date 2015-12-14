@@ -6,8 +6,9 @@ A custom neural net for recoginzing handwritten digits, with a serious nod to [I
 
 ## TODO
 
-- Correct button layout
-- Add option to enter correct value (on an incorrect guess), to collect specific data on accuracy
+- Analize Results
+- Analize correlation of misclassification and actual numbers (7's tend to be classified as 2, etc.)
+- Train net on rotated images for more robust recognition
 - Visualizations of each layer of the net (in d3 or bokeh)
 - Provide a selection of neural net architectures to allow a user to swap out and see the different vizualations and results.  (Results data will be stored by specific architecture.)
 
