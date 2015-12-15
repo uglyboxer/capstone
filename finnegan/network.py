@@ -238,10 +238,13 @@ class Network:
         for idx, item in enumerate(guess_list):
             if answers[idx] == item:
                 successes += 1
-        print(guess_list)
-        print("Successes: {}  Out of total: {}".format(successes,
-              len(guess_list)))
-        print("For a success rate of: ", successes/len(guess_list))
+
+        a = "Successes: {}  Out of total: {}".format(successes,
+              len(guess_list))
+        b = "For a success rate of: {}".format(successes/len(guess_list))
+        print(a)
+        print(b)
+        return a + '\n' + b
 
 
     def visualization(self, vector, vector_name):
