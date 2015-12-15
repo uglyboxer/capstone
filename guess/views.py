@@ -128,7 +128,7 @@ def stats_work(request):
 
 
 def about(request):
-    return redirect("https://github.com/uglyboxer")
+    return redirect("http://uglyboxer.github.io/capstone/")
 
 
 def contact(request):
