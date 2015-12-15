@@ -191,8 +191,8 @@ class Network:
 
             amt_off = np.mean(np.abs(self.layers[self.num_layers-1].error))
             print(amt_off)
-            if amt_off < .001:
-                break
+            # if amt_off < .001:
+            #     break
 
     def run_unseen(self, test_set):
         """ Makes guesses on the unseen data, and switches over the test
