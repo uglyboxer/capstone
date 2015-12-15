@@ -175,20 +175,6 @@ class Network:
                 z = self._softmax(y)
                 self._backprop(z, target_vector)
 
-            for _ in range(4):
-                target_vector = [0 if x != target else 1 for x in self.possible]
-                vector = np.array(vector).reshape(28, 28)
-                vector = vector.astype(float)
-                ang = randrange(-89, 89)
-                vector = rotate(vector, ang, mode='constant')
-
-                vector = vector.reshape(1, -1)
-                
-                vector = normalize(vector, copy=False)[0]
-                y = self._pass_through_net(vector)
-                z = self._softmax(y)
-                self._backprop(z, target_vector)
-
             amt_off = np.mean(np.abs(self.layers[self.num_layers-1].error))
             print(amt_off)
             # if amt_off < .001:

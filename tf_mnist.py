@@ -3,7 +3,7 @@ import numpy as np
 
 from sklearn import utils
 
-from finnegan.affnist_read import loadmat
+from affnist_read import loadmat
 from finnegan.network import Network
 
 def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
@@ -85,7 +85,7 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
 
 if __name__ == '__main__':
     epochs = 1
-    layer_list_list = [[285, 282, 281, 10], [52, 81, 10], [110, 108, 10],
+    layer_list_list = [[22, 21, 10], [52, 81, 10], [110, 108, 10],
                        [190, 160, 142, 10], [125, 123, 10], [142, 141, 140, 10]]
     for run_num, layer_list in enumerate(layer_list_list):
         run_mnist(run_num, epochs, len(layer_list), layer_list)
