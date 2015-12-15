@@ -55,7 +55,7 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
 
     guess_list = network.run_unseen(train_set)
     print('Test Set')
-    network.report_results(guess_list, ans_train)
+    test_report = network.report_results(guess_list, ans_train)
 
     dataset = loadmat('training_batches/32.mat')
     ans_train = dataset['affNISTdata']['label_int']
@@ -63,7 +63,7 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
 
     guess_list = network.run_unseen(train_set)
     print('Validation Set')
-    network.report_results(guess_list, ans_train)
+    val_report = network.report_results(guess_list, ans_train)
 
     file_name = 'finnegan/my_net_' + str(run_num) + '.pickle'
     g = open(file_name, 'wb')
@@ -77,7 +77,7 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
     details_3 = 'Validation Report: ' + val_report + '\n'
     h.write(details)
     h.write(details_2)
-    h.wrtie(details_3)
+    h.write(details_3)
     h.close()
 
     return None

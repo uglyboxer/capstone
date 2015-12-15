@@ -222,7 +222,7 @@ class Network:
 
         successes = 0
         for idx, item in enumerate(guess_list):
-            if answers[idx] == item:
+            if answers[idx] == item[0]:
                 successes += 1
 
         a = "Successes: {}  Out of total: {}".format(successes,
