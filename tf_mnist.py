@@ -85,6 +85,6 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
 
 if __name__ == '__main__':
     epochs = 1
-    layer_list_list = [[500, 250, 200, 170, 100, 80, 10]]
+    layer_list_list = [[24, 22, 18, 16, 14, 12, 10], [500, 250, 200, 170, 100, 80, 10]]
     for run_num, layer_list in enumerate(layer_list_list):
         run_mnist(run_num, epochs, len(layer_list), layer_list)
