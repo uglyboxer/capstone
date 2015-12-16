@@ -40,7 +40,7 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
     for i in range(2, 10):
         filename = 'training_batches/' + str(i) + '.mat'
 
-        dataset = loadmat('training_batches/1.mat')
+        dataset = loadmat(filename)
         ans_train = dataset['affNISTdata']['label_int']
         train_set = dataset['affNISTdata']['image'].transpose() 
 

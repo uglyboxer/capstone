@@ -3,6 +3,7 @@
 
 A custom neural net for recoginzing handwritten digits, with a serious nod to [I Am Trask](http://iamtrask.github.io/2015/07/12/basic-python-network/).  The neural net is pre-trained on the MNIST dataset (run on an AWS instance).  And the user input is rescaled and tested.
 
+sketch.js is a library created by [Michael Bleigh](http://intridea.github.io/sketch.js/) to allow the user to draw the image of a digit.  It has been modified to pull a drawn image from the page before being resized and sent to the neural network for classifaciton.
 
 ## TODO
 
