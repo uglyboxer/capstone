@@ -37,8 +37,8 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
     network = Network(layers, neuron_count, train_set[1])
     network.train(train_set, ans_train, epochs)
 
-    for i in range(2, 23):
-        filename = 'training_batches_' + str(i) + '.mat'
+    for i in range(2, 10):
+        filename = 'training_batches/' + str(i) + '.mat'
 
         dataset = loadmat('training_batches/1.mat')
         ans_train = dataset['affNISTdata']['label_int']
@@ -49,7 +49,7 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
 
         network.train(train_set, ans_train, epochs)
 
-    dataset = loadmat('training_batches/31.mat')
+    dataset = loadmat('training_batches/11.mat')
     ans_train = dataset['affNISTdata']['label_int']
     train_set = dataset['affNISTdata']['image'].transpose()
 
@@ -57,7 +57,7 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
     print('Test Set')
     test_report = network.report_results(guess_list, ans_train)
 
-    dataset = loadmat('training_batches/32.mat')
+    dataset = loadmat('training_batches/12.mat')
     ans_train = dataset['affNISTdata']['label_int']
     train_set = dataset['affNISTdata']['image'].transpose()
 
@@ -85,7 +85,6 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
 
 if __name__ == '__main__':
     epochs = 1
-    layer_list_list = [[22, 21, 10], [52, 81, 10], [110, 108, 10],
-                       [190, 160, 142, 10], [125, 123, 10], [142, 141, 140, 10]]
+    layer_list_list = [[500, 250, 200, 170, 100, 80, 10]]
     for run_num, layer_list in enumerate(layer_list_list):
         run_mnist(run_num, epochs, len(layer_list), layer_list)
