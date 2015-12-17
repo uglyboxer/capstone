@@ -27,28 +27,28 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
 
     """
 
-    dataset = loadmat('training_batches/1.mat')
+    dataset = loadmat('../training_batches/1.mat')
     ans_train = dataset['affNISTdata']['label_int']
     train_set = dataset['affNISTdata']['image'].transpose() 
 
-    train_set = utils.resample(train_set, random_state=2)
-    ans_train = utils.resample(ans_train, random_state=2)
+    # train_set = utils.resample(train_set, random_state=2)
+    # ans_train = utils.resample(ans_train, random_state=2)
 
     network = Network(layers, neuron_count, train_set[1])
-    for i in range(25):
-        network.train(train_set[:40000], ans_train[:40000], epochs)
+    
+    for epoch in range(1, 20):
+        
+        for i in range(1, 10):
+            filename = '../training_batches/' + str(i) + '.mat'
 
-    # for i in range(2, 10):
-    #     filename = 'training_batches/' + str(i) + '.mat'
+            dataset = loadmat(filename)
+            ans_train = dataset['affNISTdata']['label_int']
+            train_set = dataset['affNISTdata']['image'].transpose() 
 
-    #     dataset = loadmat(filename)
-    #     ans_train = dataset['affNISTdata']['label_int']
-    #     train_set = dataset['affNISTdata']['image'].transpose() 
+            # train_set = utils.resample(train_set, random_state=2)
+            # ans_train = utils.resample(ans_train, random_state=2)
 
-    #     train_set = utils.resample(train_set, random_state=2)
-    #     ans_train = utils.resample(ans_train, random_state=2)
-
-    #     network.train(train_set, ans_train, epochs)
+            network.train(train_set, ans_train, epochs)
 
     # dataset = loadmat('training_batches/11.mat')
     # ans_train = dataset['affNISTdata']['label_int']
@@ -89,6 +89,6 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
 
 if __name__ == '__main__':
     epochs = 1
-    layer_list_list = [[60, 10], [24, 22, 18, 16, 14, 12, 10], [500, 250, 200, 170, 100, 80, 10]]
+    layer_list_list = [[300, 10], [800, 20, 10]]
     for run_num, layer_list in enumerate(layer_list_list):
         run_mnist(run_num, epochs, len(layer_list), layer_list)
