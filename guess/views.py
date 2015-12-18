@@ -1,12 +1,11 @@
 from django.http import HttpResponse
+from django.views.decorators.http import require_POST
 from django.shortcuts import render, redirect
 from django.db.models import Sum
 
-import numpy as np
-
 from guess.models import Drawing, Stats
 
-from finnegan.img_handler import downsize, visualization
+from finnegan.img_handler import downsize
 from mini_net import run_mnist
 
 import logging
@@ -20,6 +19,7 @@ def home_page(request):
     return render(request, 'home.html')
 
 
+@require_POST
 def parse_data(request):
     """ As a request comes from the home page via POST, parse the canvas
     image, downsize it to match the dims of the training data, and then
@@ -39,33 +39,32 @@ def parse_data(request):
     """
 
     orig_size = 194
-    train_data_size =28
+    train_data_size = 28
 
     try:
-        if request.method == "POST":
-            info = request.POST.get('payload', 'no info')
-            if info != "no info":
-                temp_array = info.split(',')
-                img_array = [float(x) for x in temp_array[3::4]]
-                small_image = downsize(img_array, orig_size, train_data_size)
-                small_image_list = small_image.flatten().tolist()
-                try:
-                    net_guess = run_mnist(small_image)[0]
-                    val_guess = net_guess[0]
-                    net_confidence = round(float(net_guess[1])*100, 2)
+        info = request.POST.get('payload', 'no info')
+        if info != "no info":
+            temp_array = info.split(',')
+            img_array = [float(x) for x in temp_array[3::4]]
+            small_image = downsize(img_array, orig_size, train_data_size)
+            small_image_list = small_image.flatten().tolist()
+            try:
+                net_guess = run_mnist(small_image)[0]
+                val_guess = net_guess[0]
+                net_confidence = round(float(net_guess[1])*100, 2)
 
-                except:
-                    return render(request, 'home.html')
+            except:
+                return render(request, 'home.html')
 
-            else:
-                img_array = None
+        else:
+            img_array = None
 
-            Drawing.objects.create(values_array=img_array,                               
-                                   guess=val_guess,
-                                   confidence=net_confidence,
-                                   tiny_array=small_image_list,
-                                   correct=False)
-            return HttpResponse()
+        Drawing.objects.create(values_array=img_array,                               
+                               guess=val_guess,
+                               confidence=net_confidence,
+                               tiny_array=small_image_list,
+                               correct=False)
+        return HttpResponse()
     except:
         logger.exception('New way')
         logger.info(net_confidence)
@@ -86,6 +85,7 @@ def show_data(request):
     return render(request, 'report.html', {'drawing_obj': drawing_obj})
 
 
+@require_POST
 def valid_info(request):
     """ Stores the users validation (or dis-validation) of the network's
     guess in the database along with what the user intended it to be, in the
@@ -94,20 +94,19 @@ def valid_info(request):
     """
     obj = Drawing.objects.all().order_by('-id')[0]
     
-    if request.method == "POST":
-        if request.POST["valid"] == "correct":
-            obj.correct = True
-            obj.save()
-            stat = Stats.objects.get(digit=obj.guess)
-            stat.correctly_guessed += 1
-            stat.save()
-        else:
-            obj.correct = False
-            obj.actual = request.POST["actual"]
-            obj.save()
-            fail_stat = Stats.objects.get(digit=obj.actual)
-            fail_stat.incorrectly_guessed += 1
-            fail_stat.save()
+    if request.POST["valid"] == "correct":
+        obj.correct = True
+        obj.save()
+        stat = Stats.objects.get(digit=obj.guess)
+        stat.correctly_guessed += 1
+        stat.save()
+    else:
+        obj.correct = False
+        obj.actual = request.POST["actual"]
+        obj.save()
+        fail_stat = Stats.objects.get(digit=obj.actual)
+        fail_stat.incorrectly_guessed += 1
+        fail_stat.save()
 
     return redirect('/')
 
