@@ -5,11 +5,9 @@ An extinsible neural net designed to explore Convolutional Neural Networks and
 Recurrent Neural Networks via extensive visualizations.
 
 """
-from random import randrange
 
 import numpy as np
 from sklearn.preprocessing import normalize
-from skimage.transform import rotate
 
 from finnegan.layer import Layer
 
@@ -177,8 +175,8 @@ class Network:
 
             amt_off = np.mean(np.abs(self.layers[self.num_layers-1].error))
             print(amt_off)
-            # if amt_off < .001:
-            #     break
+            if amt_off < .0001:
+                break
 
     def run_unseen(self, test_set):
         """ Makes guesses on the unseen data, and switches over the test
@@ -233,13 +231,13 @@ class Network:
         return a + '\n' + b
 
 
-    def visualization(self, vector, vector_name):
-        y = np.reshape(vector, (28, 28))
-        plt.imshow(y, cmap=cm.Greys_r)
-        plt.suptitle(vector_name)
-        plt.axis('off')
-        plt.pause(0.0001)
-        plt.show()
+    # def visualization(self, vector, vector_name):
+    #     y = np.reshape(vector, (28, 28))
+    #     plt.imshow(y, cmap=cm.Greys_r)
+    #     plt.suptitle(vector_name)
+    #     plt.axis('off')
+    #     plt.pause(0.0001)
+    #     plt.show()
 
 if __name__ == '__main__':
     print("Please use net_launch.py")
