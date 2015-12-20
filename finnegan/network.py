@@ -169,11 +169,11 @@ class Network:
                 vector = np.array(vector).reshape(1, -1)
                 vector = vector.astype(float)
                 vector = normalize(vector, copy=False)[0]
-                y = self._pass_through_net(vector)
+                y = self._pass_through_net(vector, dropout=True)
                 z = self._softmax(y)
                 self._backprop(z, target_vector)
 
-            amt_off = np.mean(np.abs(self.layers[self.num_layers-1].error))
+            amt_off = (sum((self.layers[self.num_layers-1].error)**2))/10
             print(amt_off)
             if amt_off < .0001:
                 break
