@@ -64,7 +64,10 @@ class Network:
 
         """
         for x, _ in enumerate(self.layers):
-            vector = self.layers[x]._vector_pass(vector, dropout)
+            hidden = True
+            if x == len(self.layers) - 1:
+                hidden = False
+            vector = self.layers[x]._vector_pass(vector, hidden, dropout)
         return vector
 
     def _softmax(self, w, t=1.0):
@@ -175,7 +178,7 @@ class Network:
 
             amt_off = (sum((self.layers[self.num_layers-1].error)**2))/10
             print(amt_off)
-            if amt_off < .0001:
+            if amt_off < .00001:
                 break
 
     def run_unseen(self, test_set):

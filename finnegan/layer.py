@@ -50,7 +50,7 @@ class Layer:
         self.l_rate = .35
         self.reg_rate = .0001
 
-    def _vector_pass(self, vector, do_dropout=True):
+    def _vector_pass(self, vector, hidden=True, do_dropout=True):
         """ Takes the vector through the neurons of the layer
 
         Parameters
@@ -67,10 +67,10 @@ class Layer:
             The ouput of the layer
 
         """
-        dropout_percent = 0.1
+        dropout_percent = 0.35
         self.mr_input = vector
         temp_weights = np.copy(self.weights)
-        if do_dropout:
+        if hidden and do_dropout:
             temp_weights *= np.random.binomial([
                             np.ones(np.shape(self.weights))],
                             1-dropout_percent)[0] * (1.0/(1-dropout_percent))
