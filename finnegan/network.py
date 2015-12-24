@@ -169,7 +169,7 @@ class Network:
                 vector = np.array(vector).reshape(1, -1)
                 vector = vector.astype(float)
                 vector = normalize(vector, copy=False)[0]
-                y = self._pass_through_net(vector, dropout=True)
+                y = self._pass_through_net(vector, dropout=False)
                 z = self._softmax(y)
                 self._backprop(z, target_vector)
 

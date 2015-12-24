@@ -125,7 +125,8 @@ class Layer:
         """ Update the weights of each neuron based on the backprop
         calculation """
 
-        self.weights += (np.outer(self.mr_input, self.deltas) * self.l_rate)
+        reg = (self.reg_rate / (2 * len(self.mr_output))) * (np.multiply(self.mr_output, self.mr_output))
+        self.weights += ((np.outer(self.mr_input, self.deltas) * self.l_rate) - reg)
         return
 
 if __name__ == '__main__':
