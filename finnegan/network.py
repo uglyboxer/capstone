@@ -175,7 +175,7 @@ class Network:
 
             amt_off = (sum((self.layers[self.num_layers-1].error)**2))/10
             print(amt_off)
-            if amt_off < .0001:
+            if amt_off < .00055:
                 break
 
     def run_unseen(self, test_set):
