@@ -23,7 +23,7 @@ def db_connect():
     conn_string = "host='localhost' dbname='netdb' user='postgres' password='postgres'"
     conn = psycopg2.connect(conn_string)
     cursor = conn.cursor()
-    cursor.execute("SELECT tiny_array FROM guess_drawing where id=669")
+    cursor.execute("SELECT tiny_array FROM guess_drawing where id=730")
     return cursor.fetchall()
 
 def mnist():
@@ -39,7 +39,7 @@ def mnist():
     train_set = [x[1:] for x in train]
     ans_train.pop(0)
     train_set.pop(0)
-    idx = ans_train.index(6)
+    idx = ans_train.index(1)
     return train_set[idx]
 
 

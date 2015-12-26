@@ -1,3 +1,0 @@
-Neuron Counts: [110, 10]
-Test Report: Successes: 4008  Out of total: 4199
-For a success rate of: 0.9545129792807812
