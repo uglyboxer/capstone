@@ -18,7 +18,7 @@ def parse_to_test_sample(info):
         data.
     """
 
-    orig_size = 194
+    orig_size = 174
     train_data_size = 28
     if info != "no info":
 

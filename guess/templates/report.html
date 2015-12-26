@@ -61,7 +61,7 @@
         <p class="lead"></p>
       </div>
 
-    <canvas id='repo1' width="194" height="194"></canvas>
+    <canvas id='repo1' width="174" height="174"></canvas>
 
     <h5 class='answer'>Looks like a {{ drawing_obj.guess }} to me!</h5>
     <h5 class='answer'>I'm {{ drawing_obj.confidence }}% sure.</h5>
@@ -84,7 +84,7 @@
       var canvas = document.getElementById('repo1');
       // var lg_img_array = Uint8ClampedArray.from(large_img);
       var ctx = canvas.getContext('2d');
-      var imgData=ctx.createImageData(194,194);
+      var imgData=ctx.createImageData(174,174);
       for (var j=0; j<imgData.length; j++) {
         imgData.data[j] = 0;
       }
