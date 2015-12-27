@@ -48,7 +48,7 @@ class Layer:
         self.mr_input = []
         self.deltas = np.array((vector_size, 1))
         self.l_rate = .35
-        self.reg_rate = .0001
+        self.reg_rate = .001
 
     def _vector_pass(self, vector, do_dropout=True):
         """ Takes the vector through the neurons of the layer
