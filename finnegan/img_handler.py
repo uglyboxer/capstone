@@ -26,7 +26,7 @@ def downsize(img_data, start_size, target_size):
 
     """
     img_data = np.array(img_data).reshape(start_size, start_size)
-    return resize(img_data, (target_size, target_size))
+    return resize(img_data, (target_size, target_size), order=3, preserve_range=True)
 
 
 def visualization(vector):
