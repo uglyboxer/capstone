@@ -23,7 +23,7 @@ def db_connect():
     conn_string = "host='localhost' dbname='netdb' user='postgres' password='postgres'"
     conn = psycopg2.connect(conn_string)
     cursor = conn.cursor()
-    cursor.execute("SELECT tiny_array FROM guess_drawing where id=730")
+    cursor.execute("SELECT tiny_array FROM guess_drawing where id=728")
     return cursor.fetchall()
 
 def mnist():
