@@ -31,7 +31,7 @@ install:
   # - python setup.py install
   #- pip install requirements.txt
 
-Run test
+# Run test
 script:
   - py.test
 
