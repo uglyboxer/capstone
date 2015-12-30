@@ -2,6 +2,6 @@
 Helper Method for Parsing Web App Input
 ***************************************
 
-.. automodule:: predict
+.. automodule:: guess.predict
     :members:
 

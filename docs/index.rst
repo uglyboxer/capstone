@@ -14,8 +14,8 @@ Contents:
    Neural Network <finnegan>
    Base Layers <layer>
    Mini Net <mini_net>
-   Django Views </guess/views>
-   Drawing Prediction </guess/predict>
+   Django Views <views>
+   Drawing Prediction <predict>
 
 
 
