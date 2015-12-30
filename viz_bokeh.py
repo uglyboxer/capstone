@@ -104,7 +104,7 @@ def bokeh_heatmap(vector):
             weight.append(w)
             strength = vector[w, o]
             val.append(strength)
-            color.append(colors[min(int(strength/10000000), 8)])
+            color.append(colors[min(int(strength/2)+4, 8)])
 
     output_file('unemployment.html')
 
@@ -152,4 +152,4 @@ if __name__ == '__main__':
     network = pickle.load(fr)
     fr.close()
     print(network.layers[1].weights.shape)
-    bokeh_heatmap(convert_np_to_bokeh(network.layers[1].weights))
+    bokeh_heatmap(network.layers[1].weights)

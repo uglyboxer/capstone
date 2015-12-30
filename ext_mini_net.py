@@ -57,12 +57,13 @@ def run_mnist(run_num, epochs=0, layers=0, neuron_count=0):
     h.write(details_2)
     h.close()
 
+    print(network.layers[1].weights)
     return None
 
 
 if __name__ == '__main__':
     epochs = 20
-    layer_list_list = [[110, 10]]
+    layer_list_list = [[80, 80, 10]]
     # layer_list_list = [[300, 10]91, [85, 82, 81, 10]bunk, [52, 81, 10]91, [80, 79, 10]87, 
     #                    [40, 38, 36, 34, 10], [600, 10]]
     for run_num, layer_list in enumerate(layer_list_list):
