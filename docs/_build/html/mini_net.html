@@ -1,0 +1,266 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Mini Net Helper Module &mdash; Capstone-Finnegan 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Capstone-Finnegan 0.1 documentation" href="index.html"/>
+        <link rel="prev" title="Layer Class for Neural Network" href="layer.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Capstone-Finnegan
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finnegan.html">Neural Network</a></li>
+<li class="toctree-l1"><a class="reference internal" href="layer.html">Base Layers</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Mini Net</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Capstone-Finnegan</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Mini Net Helper Module</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/mini_net.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-mini_net">
+<span id="mini-net-helper-module"></span><h1>Mini Net Helper Module<a class="headerlink" href="#module-mini_net" title="Permalink to this headline">¶</a></h1>
+<p>Author: Cole Howard</p>
+<p>Helper module to create or reinstantiate a neural network.  Commented out code
+is for training the network via Scikit dataset or original MNIST dataset.  The
+resulting network is then pickled and saved to a file.  The current
+uncommented code is for reading that file and reinstantiating it for testing
+new input against.</p>
+<dl class="function">
+<dt id="mini_net.run_mnist">
+<code class="descclassname">mini_net.</code><code class="descname">run_mnist</code><span class="sig-paren">(</span><em>vector</em>, <em>epochs=0</em>, <em>layers=0</em>, <em>neuron_count=0</em><span class="sig-paren">)</span><a class="headerlink" href="#mini_net.run_mnist" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds network (or reinstantiates it) based on the MNIST Digits
+dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>epochs</strong> (<em>int</em>) &#8211; Number of iterations of the the traininng loop for the whole dataset</li>
+<li><strong>layers</strong> (<em>int</em>) &#8211; Number of layers (not counting the input layer, but does count output
+layer)</li>
+<li><strong>neuron_count</strong> (<em>list</em>) &#8211; The number of neurons in each of the layers (in order), does not count
+the bias term</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="mini_net.target_values">
+<code class="descclassname">mini_net.</code><code class="descname">target_values</code><a class="headerlink" href="#mini_net.target_values" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>list</em></p>
+<p>The possible values for each training vector</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="mini_net.run_scikit_digits">
+<code class="descclassname">mini_net.</code><code class="descname">run_scikit_digits</code><span class="sig-paren">(</span><em>vector</em>, <em>epochs=0</em>, <em>layers=0</em>, <em>neuron_count=[]</em><span class="sig-paren">)</span><a class="headerlink" href="#mini_net.run_scikit_digits" title="Permalink to this definition">¶</a></dt>
+<dd><p>Builds network (or reinstantiates it) based on the Scikit Digits
+dataset.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>epochs</strong> (<em>int</em>) &#8211; Number of iterations of the the traininng loop for the whole dataset</li>
+<li><strong>layers</strong> (<em>int</em>) &#8211; Number of layers (not counting the input layer, but does count output
+layer)</li>
+<li><strong>neuron_count</strong> (<em>list</em>) &#8211; The number of neurons in each of the layers (in order), does not count
+the bias term</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt>
+<code class="descclassname">mini_net.</code><code class="descname">target_values</code></dt>
+<dd><p><em>list</em></p>
+<p>The possible values for each training vector</p>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+      
+        <a href="layer.html" class="btn btn-neutral" title="Layer Class for Neural Network" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Cole Howard.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

@@ -8,7 +8,10 @@ from mini_net import run_mnist
 
 
 def parse_to_test_sample(info):
-    """
+    """  Takes the info retrieved from the script.js implementation on main
+    page and parses it.  Data is run against existing neural net and then
+    stores net's output and original data in PostgreSQL database.
+    
     Attribues
     ---------
     orig_size : int

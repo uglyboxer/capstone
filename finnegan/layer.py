@@ -123,7 +123,8 @@ class Layer:
 
     def _update_weights(self):
         """ Update the weights of each neuron based on the backprop
-        calculation """
+        calculation
+        """
 
         reg = (self.reg_rate / (2 * len(self.mr_output))) * (np.multiply(self.mr_output, self.mr_output))
         self.weights += ((np.outer(self.mr_input, self.deltas) * self.l_rate) - reg)

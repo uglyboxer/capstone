@@ -80,6 +80,7 @@ def valid_info(request):
 
 def stats_work(request):
     """ Work out statistics for results """
+    
     digs = Stats.objects.all().order_by('digit')
     tot_correct = digs.aggregate(Sum('correctly_guessed'))
     tot_inc = digs.aggregate(Sum('incorrectly_guessed'))

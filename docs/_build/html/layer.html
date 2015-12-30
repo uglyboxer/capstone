@@ -1,0 +1,349 @@
+
+
+<!DOCTYPE html>
+<!--[if IE 8]><html class="no-js lt-ie9" lang="en" > <![endif]-->
+<!--[if gt IE 8]><!--> <html class="no-js" lang="en" > <!--<![endif]-->
+<head>
+  <meta charset="utf-8">
+  
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  
+  <title>Layer Class for Neural Network &mdash; Capstone-Finnegan 0.1 documentation</title>
+  
+
+  
+  
+
+  
+
+  
+  
+    
+
+  
+
+  
+  
+    <link rel="stylesheet" href="_static/css/theme.css" type="text/css" />
+  
+
+  
+
+  
+    <link rel="top" title="Capstone-Finnegan 0.1 documentation" href="index.html"/>
+        <link rel="next" title="Mini Net Helper Module" href="mini_net.html"/>
+        <link rel="prev" title="Network Class for Neural Network" href="finnegan.html"/> 
+
+  
+  <script src="_static/js/modernizr.min.js"></script>
+
+</head>
+
+<body class="wy-body-for-nav" role="document">
+
+  <div class="wy-grid-for-nav">
+
+    
+    <nav data-toggle="wy-nav-shift" class="wy-nav-side">
+      <div class="wy-side-scroll">
+        <div class="wy-side-nav-search">
+          
+
+          
+            <a href="index.html" class="icon icon-home"> Capstone-Finnegan
+          
+
+          
+          </a>
+
+          
+            
+            
+              <div class="version">
+                0.1
+              </div>
+            
+          
+
+          
+<div role="search">
+  <form id="rtd-search-form" class="wy-form" action="search.html" method="get">
+    <input type="text" name="q" placeholder="Search docs" />
+    <input type="hidden" name="check_keywords" value="yes" />
+    <input type="hidden" name="area" value="default" />
+  </form>
+</div>
+
+          
+        </div>
+
+        <div class="wy-menu wy-menu-vertical" data-spy="affix" role="navigation" aria-label="main navigation">
+          
+            
+            
+                <ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="intro.html">Intro</a></li>
+<li class="toctree-l1"><a class="reference internal" href="finnegan.html">Neural Network</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Base Layers</a></li>
+<li class="toctree-l1"><a class="reference internal" href="mini_net.html">Mini Net</a></li>
+</ul>
+
+            
+          
+        </div>
+      </div>
+    </nav>
+
+    <section data-toggle="wy-nav-shift" class="wy-nav-content-wrap">
+
+      
+      <nav class="wy-nav-top" role="navigation" aria-label="top navigation">
+        <i data-toggle="wy-nav-top" class="fa fa-bars"></i>
+        <a href="index.html">Capstone-Finnegan</a>
+      </nav>
+
+
+      
+      <div class="wy-nav-content">
+        <div class="rst-content">
+          
+
+
+
+
+
+<div role="navigation" aria-label="breadcrumbs navigation">
+  <ul class="wy-breadcrumbs">
+    <li><a href="index.html">Docs</a> &raquo;</li>
+      
+    <li>Layer Class for Neural Network</li>
+      <li class="wy-breadcrumbs-aside">
+        
+          
+            <a href="_sources/layer.txt" rel="nofollow"> View page source</a>
+          
+        
+      </li>
+  </ul>
+  <hr/>
+</div>
+          <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
+           <div itemprop="articleBody">
+            
+  <div class="section" id="module-finnegan.layer">
+<span id="layer-class-for-neural-network"></span><h1>Layer Class for Neural Network<a class="headerlink" href="#module-finnegan.layer" title="Permalink to this headline">¶</a></h1>
+<p>Author: Cole Howard</p>
+<dl class="class">
+<dt id="finnegan.layer.Layer">
+<em class="property">class </em><code class="descclassname">finnegan.layer.</code><code class="descname">Layer</code><span class="sig-paren">(</span><em>num_neurons</em>, <em>vector_size</em><span class="sig-paren">)</span><a class="headerlink" href="#finnegan.layer.Layer" title="Permalink to this definition">¶</a></dt>
+<dd><p>A matrix representation of the neurons in a layer
+Inspired by: I Am Trask</p>
+<blockquote>
+<div><a class="reference external" href="http://iamtrask.github.io/2015/07/12/basic-python-network/">http://iamtrask.github.io/2015/07/12/basic-python-network/</a></div></blockquote>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first last simple">
+<li><strong>num_neurons</strong> (<em>int</em>) &#8211; The number of instances of the class Neuron in each layer.</li>
+<li><strong>vector_size</strong> (<em>int</em>) &#8211; The number of inputs from the previous layer/original input.  Also,
+equivalent to the length of incoming input vector.</li>
+</ul>
+</td>
+</tr>
+</tbody>
+</table>
+<dl class="attribute">
+<dt id="finnegan.layer.Layer.weights">
+<code class="descname">weights</code><a class="headerlink" href="#finnegan.layer.Layer.weights" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>numpy array</em></p>
+<p>A matrix reprsentation of the weight space.  Each column represents a
+neurnon in the layer.
+Each entry in those columns is the value of a weight in that neuron.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="finnegan.layer.Layer.mr_output">
+<code class="descname">mr_output</code><a class="headerlink" href="#finnegan.layer.Layer.mr_output" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>numpy array</em></p>
+<p>Output of the layer</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="finnegan.layer.Layer.mr_input">
+<code class="descname">mr_input</code><a class="headerlink" href="#finnegan.layer.Layer.mr_input" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>numpy array</em></p>
+<p>Input vector from the layer below (or original input)</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="finnegan.layer.Layer.deltas">
+<code class="descname">deltas</code><a class="headerlink" href="#finnegan.layer.Layer.deltas" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>numpy array</em></p>
+<p>Calculated change in the weightspace for the backprop</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="finnegan.layer.Layer.l_rate">
+<code class="descname">l_rate</code><a class="headerlink" href="#finnegan.layer.Layer.l_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>float</em></p>
+<p>The learning rate for the update weight method</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="finnegan.layer.Layer.reg_rate">
+<code class="descname">reg_rate</code><a class="headerlink" href="#finnegan.layer.Layer.reg_rate" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>float</em></p>
+<p>The factor by which the weights are adjusted for regularization to
+prevent overfitting.</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="finnegan.layer.Layer._act_derivative">
+<code class="descname">_act_derivative</code><span class="sig-paren">(</span><em>vector</em><span class="sig-paren">)</span><a class="headerlink" href="#finnegan.layer.Layer._act_derivative" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the derivative of the activation function</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>vector</strong> (<em>numpy array</em>) &#8211; A vector representing the most recent output of a given layer</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">numpy array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="finnegan.layer.Layer._layer_level_backprop">
+<code class="descname">_layer_level_backprop</code><span class="sig-paren">(</span><em>output</em>, <em>layer_ahead</em>, <em>target_vector</em>, <em>hidden=True</em><span class="sig-paren">)</span><a class="headerlink" href="#finnegan.layer.Layer._layer_level_backprop" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the error at this level</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>layer_ahead</strong> (<em>object</em>) &#8211; The instance of Layer that this layer&#8217;s output is connected to</li>
+<li><strong>target_vector</strong> (<em>numpy array</em>) &#8211; A representation of the expected output of the net for the original
+vector input on this particular pass</li>
+<li><strong>hidden</strong> (<em>bool</em>) &#8211; Whether or not the current layer is hidden (default: True)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">For acknoledgment of execution</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">True</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="method">
+<dt id="finnegan.layer.Layer._update_weights">
+<code class="descname">_update_weights</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="headerlink" href="#finnegan.layer.Layer._update_weights" title="Permalink to this definition">¶</a></dt>
+<dd><p>Update the weights of each neuron based on the backprop
+calculation</p>
+</dd></dl>
+
+<dl class="method">
+<dt id="finnegan.layer.Layer._vector_pass">
+<code class="descname">_vector_pass</code><span class="sig-paren">(</span><em>vector</em>, <em>do_dropout=True</em><span class="sig-paren">)</span><a class="headerlink" href="#finnegan.layer.Layer._vector_pass" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes the vector through the neurons of the layer</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>vector</strong> (<em>numpy array</em>) &#8211; The input array to the layer</li>
+<li><strong>do_dropout</strong> (<em>bool</em>) &#8211; Whether or not weight dropout should happen as the vector passes
+through the layer</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">The ouput of the layer</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">numpy array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</dd></dl>
+
+</div>
+
+
+           </div>
+          </div>
+          <footer>
+  
+    <div class="rst-footer-buttons" role="navigation" aria-label="footer navigation">
+      
+        <a href="mini_net.html" class="btn btn-neutral float-right" title="Mini Net Helper Module" accesskey="n">Next <span class="fa fa-arrow-circle-right"></span></a>
+      
+      
+        <a href="finnegan.html" class="btn btn-neutral" title="Network Class for Neural Network" accesskey="p"><span class="fa fa-arrow-circle-left"></span> Previous</a>
+      
+    </div>
+  
+
+  <hr/>
+
+  <div role="contentinfo">
+    <p>
+        &copy; Copyright 2015, Cole Howard.
+
+    </p>
+  </div>
+  Built with <a href="http://sphinx-doc.org/">Sphinx</a> using a <a href="https://github.com/snide/sphinx_rtd_theme">theme</a> provided by <a href="https://readthedocs.org">Read the Docs</a>. 
+
+</footer>
+
+        </div>
+      </div>
+
+    </section>
+
+  </div>
+  
+
+
+  
+
+    <script type="text/javascript">
+        var DOCUMENTATION_OPTIONS = {
+            URL_ROOT:'./',
+            VERSION:'0.1',
+            COLLAPSE_INDEX:false,
+            FILE_SUFFIX:'.html',
+            HAS_SOURCE:  true
+        };
+    </script>
+      <script type="text/javascript" src="_static/jquery.js"></script>
+      <script type="text/javascript" src="_static/underscore.js"></script>
+      <script type="text/javascript" src="_static/doctools.js"></script>
+
+  
+
+  
+  
+    <script type="text/javascript" src="_static/js/theme.js"></script>
+  
+
+  
+  
+  <script type="text/javascript">
+      jQuery(function () {
+          SphinxRtdTheme.StickyNav.enable();
+      });
+  </script>
+   
+
+</body>
+</html>

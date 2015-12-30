@@ -1,8 +1,7 @@
 """ Author: Cole Howard
-Title: Finnegan
 
-An extinsible neural net designed to explore Convolutional Neural Networks and
-Recurrent Neural Networks via extensive visualizations.
+An extinsible neural net designed to explore Neural Network Architecture via
+extensive visualizations.
 
 """
 
@@ -10,12 +9,6 @@ import numpy as np
 from sklearn.preprocessing import normalize
 
 from finnegan.layer import Layer
-
-# from matplotlib import cm
-# from matplotlib import pyplot as plt
-
-# import warnings
-# warnings.filterwarnings("ignore", category=DeprecationWarning)
 
 
 class Network:
@@ -230,14 +223,6 @@ class Network:
         print(b)
         return a + '\n' + b
 
-
-    # def visualization(self, vector, vector_name):
-    #     y = np.reshape(vector, (28, 28))
-    #     plt.imshow(y, cmap=cm.Greys_r)
-    #     plt.suptitle(vector_name)
-    #     plt.axis('off')
-    #     plt.pause(0.0001)
-    #     plt.show()
 
 if __name__ == '__main__':
     print("Please use net_launch.py")
