@@ -16,7 +16,7 @@ The neural net in the webapp is pre-trained (as real time training would be impr
 
 The pre-training was done on the MNIST dataset, a set of 60,000 handwritten digit examples.  Each a 28px by 28px greyscale image.  The architecture of the net was chosen by running the helper function "ext_mini_net.py" to iterate over many possible combinations of layer sizes (number of neurons) and number of layers.  The most successful of those runs against a validation set were chosen and the state of that trained network was "pickled" using Python Pickle.  
 
-The webapp reinstantiates that trained network and runs the user's sample resized (see this `post <http://uglyboxer.github.io/machine%20learning/neural%20net/python/mnist/scikit-image/2015/12/26/smaller.html>` on my blog for deatails on that).  It then makes a guess as to which digit it is.  It also provides a confidence and requests feedback from the user on the validity of the guess.  The data surrounding each submission is stored in a PostgreSQL database: image, resized image, guess, confidence, correct/incorrect, actual digit (if guess was incorrect).
+The webapp reinstantiates that trained network and runs the user's sample resized (see this `post <http://uglyboxer.github.io/machine%20learning/neural%20net/python/mnist/scikit-image/2015/12/26/smaller.html>`_ on my blog for deatails on that).  It then makes a guess as to which digit it is.  It also provides a confidence and requests feedback from the user on the validity of the guess.  The data surrounding each submission is stored in a PostgreSQL database: image, resized image, guess, confidence, correct/incorrect, actual digit (if guess was incorrect).
 
 Lastly, a statistic page is provided for the overall performance of the classifier.
 
