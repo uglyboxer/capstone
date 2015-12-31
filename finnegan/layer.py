@@ -1,5 +1,4 @@
-"""
-Author: Cole Howard
+""" Author: Cole Howard
 """
 
 import numpy as np
@@ -9,7 +8,7 @@ from scipy.special import expit
 class Layer:
     """ A matrix representation of the neurons in a layer
     Inspired by: I Am Trask
-                 http://iamtrask.github.io/2015/07/12/basic-python-network/
+    http://iamtrask.github.io/2015/07/12/basic-python-network/
 
     Parameters
     ----------
@@ -23,8 +22,8 @@ class Layer:
     ----------
     weights : numpy array
         A matrix reprsentation of the weight space.  Each column represents a
-        neurnon in the layer.
-        Each entry in those columns is the value of a weight in that neuron.
+        neurnon in the layer.  Each entry in those columns is the value of a
+        weight in that neuron.
     mr_output : numpy array
         Output of the layer
     mr_input : numpy array

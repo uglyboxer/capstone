@@ -11,14 +11,15 @@ def parse_to_test_sample(info):
     """  Takes the info retrieved from the script.js implementation on main
     page and parses it.  Data is run against existing neural net and then
     stores net's output and original data in PostgreSQL database.
-    
-    Attribues
-    ---------
+
+    Attributes
+    ----------
     orig_size : int
         The length of a side of the square html input canvas.
     train_data_size : int
         The length of a side of the square 2d array representing the training
         data.
+
     """
 
     orig_size = 174

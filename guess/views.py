@@ -42,8 +42,8 @@ def show_data(request):
     """ Sends a render of image as drawn and the network's guess and
     confidence via the report template.
 
-    Attribues
-    ---------
+    Attributes
+    ----------
     drawing_obj : Drawing model instance
       The last line from the database (specifically the most recent entry).
 
@@ -80,7 +80,7 @@ def valid_info(request):
 
 def stats_work(request):
     """ Work out statistics for results """
-    
+
     digs = Stats.objects.all().order_by('digit')
     tot_correct = digs.aggregate(Sum('correctly_guessed'))
     tot_inc = digs.aggregate(Sum('incorrectly_guessed'))

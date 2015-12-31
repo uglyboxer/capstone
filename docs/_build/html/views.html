@@ -132,8 +132,47 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="django-view-for-finnegan-web-app">
-<h1>Django View for Finnegan Web App<a class="headerlink" href="#django-view-for-finnegan-web-app" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-guess.views">
+<span id="django-view-for-finnegan-web-app"></span><h1>Django View for Finnegan Web App<a class="headerlink" href="#module-guess.views" title="Permalink to this headline">¶</a></h1>
+<dl class="function">
+<dt id="guess.views.parse_data">
+<code class="descclassname">guess.views.</code><code class="descname">parse_data</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#guess.views.parse_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>As a request comes from the home page via POST, parse the canvas
+image, downsize it to match the dims of the training data, and then
+pass it to the pre-trained neural network for it make a prediction.</p>
+<p>The results of the prediction (value and confidence), as well as the
+array representations of the images themselves are stored in the
+model, and hence the PostgresQL database.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="guess.views.show_data">
+<code class="descclassname">guess.views.</code><code class="descname">show_data</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#guess.views.show_data" title="Permalink to this definition">¶</a></dt>
+<dd><p>Sends a render of image as drawn and the network&#8217;s guess and
+confidence via the report template.</p>
+<dl class="attribute">
+<dt id="guess.views.drawing_obj">
+<code class="descclassname">guess.views.</code><code class="descname">drawing_obj</code><a class="headerlink" href="#guess.views.drawing_obj" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>Drawing model instance</em></p>
+<p>The last line from the database (specifically the most recent entry).</p>
+</dd></dl>
+
+</dd></dl>
+
+<dl class="function">
+<dt id="guess.views.stats_work">
+<code class="descclassname">guess.views.</code><code class="descname">stats_work</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#guess.views.stats_work" title="Permalink to this definition">¶</a></dt>
+<dd><p>Work out statistics for results</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="guess.views.valid_info">
+<code class="descclassname">guess.views.</code><code class="descname">valid_info</code><span class="sig-paren">(</span><em>request</em><span class="sig-paren">)</span><a class="headerlink" href="#guess.views.valid_info" title="Permalink to this definition">¶</a></dt>
+<dd><p>Stores the users validation (or dis-validation) of the network&#8217;s
+guess in the database along with what the user intended it to be, in the
+case of an incorrect guess.</p>
+</dd></dl>
+
 </div>
 
 

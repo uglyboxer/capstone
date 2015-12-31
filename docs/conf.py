@@ -21,8 +21,12 @@ import shlex
 # documentation root, use os.path.abspath to make it absolute, like shown here.
 sys.path.append(os.path.abspath('..'))
 
-from django.conf import settings
-settings.configure()
+os.environ.setdefault("DJANGO_SETTINGS_MODULE", "net.settings")
+
+import django
+# from django.conf import settings
+# settings.configure()
+django.setup()
 
 # -- General configuration ------------------------------------------------
 

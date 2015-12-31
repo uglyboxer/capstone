@@ -131,8 +131,33 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="helper-method-for-parsing-web-app-input">
-<h1>Helper Method for Parsing Web App Input<a class="headerlink" href="#helper-method-for-parsing-web-app-input" title="Permalink to this headline">¶</a></h1>
+  <div class="section" id="module-guess.predict">
+<span id="helper-method-for-parsing-web-app-input"></span><h1>Helper Method for Parsing Web App Input<a class="headerlink" href="#module-guess.predict" title="Permalink to this headline">¶</a></h1>
+<p>Accept an array representing a test sample, parse it and pass through
+a pre-trained neural net then store results in a pre-existing database</p>
+<dl class="function">
+<dt id="guess.predict.parse_to_test_sample">
+<code class="descclassname">guess.predict.</code><code class="descname">parse_to_test_sample</code><span class="sig-paren">(</span><em>info</em><span class="sig-paren">)</span><a class="headerlink" href="#guess.predict.parse_to_test_sample" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes the info retrieved from the script.js implementation on main
+page and parses it.  Data is run against existing neural net and then
+stores net&#8217;s output and original data in PostgreSQL database.</p>
+<dl class="attribute">
+<dt id="guess.predict.orig_size">
+<code class="descclassname">guess.predict.</code><code class="descname">orig_size</code><a class="headerlink" href="#guess.predict.orig_size" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em></p>
+<p>The length of a side of the square html input canvas.</p>
+</dd></dl>
+
+<dl class="attribute">
+<dt id="guess.predict.train_data_size">
+<code class="descclassname">guess.predict.</code><code class="descname">train_data_size</code><a class="headerlink" href="#guess.predict.train_data_size" title="Permalink to this definition">¶</a></dt>
+<dd><p><em>int</em></p>
+<p>The length of a side of the square 2d array representing the training
+data.</p>
+</dd></dl>
+
+</dd></dl>
+
 </div>
 
 

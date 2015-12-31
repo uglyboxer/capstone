@@ -8,7 +8,7 @@
   
   <meta name="viewport" content="width=device-width, initial-scale=1.0">
   
-  <title>Intro &mdash; Capstone-Finnegan 0.1 documentation</title>
+  <title>Finnegan - An Exploration in Neural Nets &mdash; Capstone-Finnegan 0.1 documentation</title>
   
 
   
@@ -82,7 +82,13 @@
             
             
                 <ul class="current">
-<li class="toctree-l1 current"><a class="current reference internal" href="">Intro</a></li>
+<li class="toctree-l1 current"><a class="current reference internal" href="">Intro</a><ul>
+<li class="toctree-l2"><a class="reference internal" href="#overview">Overview</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#requirements">Requirements</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#usage">Usage</a></li>
+<li class="toctree-l2"><a class="reference internal" href="#acknowledgements">Acknowledgements</a></li>
+</ul>
+</li>
 <li class="toctree-l1"><a class="reference internal" href="finnegan.html">Neural Network</a></li>
 <li class="toctree-l1"><a class="reference internal" href="layer.html">Base Layers</a></li>
 <li class="toctree-l1"><a class="reference internal" href="mini_net.html">Mini Net</a></li>
@@ -118,7 +124,7 @@
   <ul class="wy-breadcrumbs">
     <li><a href="index.html">Docs</a> &raquo;</li>
       
-    <li>Intro</li>
+    <li>Finnegan - An Exploration in Neural Nets</li>
       <li class="wy-breadcrumbs-aside">
         
           
@@ -132,11 +138,70 @@
           <div role="main" class="document" itemscope="itemscope" itemtype="http://schema.org/Article">
            <div itemprop="articleBody">
             
-  <div class="section" id="intro">
-<h1>Intro<a class="headerlink" href="#intro" title="Permalink to this headline">¶</a></h1>
-<p>This is a test to see if I know what I&#8217;m doing.</p>
-<p>Probably not.</p>
-<p>Hi.</p>
+  <div class="section" id="finnegan-an-exploration-in-neural-nets">
+<h1>Finnegan - An Exploration in Neural Nets<a class="headerlink" href="#finnegan-an-exploration-in-neural-nets" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="overview">
+<h2>Overview<a class="headerlink" href="#overview" title="Permalink to this headline">¶</a></h2>
+<p>Finnegan is a basic multi-class neural net classifier.  It is designed to be trained with any labled dataset, and then make predictions (classifications) on unseen, similar examples.</p>
+<p>A front end user experience, in the form of a web app is provided around the task of classifying handwritten digits (0-9).  To try: navigate <a class="reference external" href="http://uglyboxer.pythonanywhere.com">here</a> in a browser.</p>
+<p>The webapp uses django and boostrap to serve a javascript page to collect the handwriting sample.  On the backend the server parses the drawing to a greyscale image and then uses the pixel values as the input vector to the neural net.</p>
+<p>The neural net in the webapp is pre-trained (as real time training would be impractical from the perspective of a user&#8217;s time).</p>
+<p>The pre-training was done on the MNIST dataset, a set of 60,000 handwritten digit examples.  Each a 28px by 28px greyscale image.  The architecture of the net was chosen by running the helper function &#8220;ext_mini_net.py&#8221; to iterate over many possible combinations of layer sizes (number of neurons) and number of layers.  The most successful of those runs against a validation set were chosen and the state of that trained network was &#8220;pickled&#8221; using Python Pickle.</p>
+<p>The webapp reinstantiates that trained network and runs the user&#8217;s sample resized (see this <cite>post &lt;http://uglyboxer.github.io/machine%20learning/neural%20net/python/mnist/scikit-image/2015/12/26/smaller.html&gt;</cite> on my blog for deatails on that).  It then makes a guess as to which digit it is.  It also provides a confidence and requests feedback from the user on the validity of the guess.  The data surrounding each submission is stored in a PostgreSQL database: image, resized image, guess, confidence, correct/incorrect, actual digit (if guess was incorrect).</p>
+<p>Lastly, a statistic page is provided for the overall performance of the classifier.</p>
+</div>
+<div class="section" id="requirements">
+<h2>Requirements<a class="headerlink" href="#requirements" title="Permalink to this headline">¶</a></h2>
+<p>Basic Neural Network Needs</p>
+<ul class="simple">
+<li>Scipy</li>
+<li>Numpy</li>
+<li>Scikit-learn (for randomize dataset, or using their handwritten, smaller digits)</li>
+</ul>
+<p>Webapp Needs (in addition to above)</p>
+<ul class="simple">
+<li>Django</li>
+<li>Bootstrap</li>
+<li>PosgreSQL</li>
+</ul>
+</div>
+<div class="section" id="usage">
+<h2>Usage<a class="headerlink" href="#usage" title="Permalink to this headline">¶</a></h2>
+<p>To run the webapp locally, clone the <a class="reference external" href="https://github.com/uglyboxer/capstone">repo</a>.</p>
+<p>You will need to setup a PostgreSQL database and point the app to it in:
+capstone/net/settings.py</p>
+<p>Then from the capstone directory:</p>
+<div class="highlight-python"><div class="highlight"><pre>python manage.py makemigrations
+python manage.py migrate
+python manage.py runserver
+</pre></div>
+</div>
+<p>This will serve the page on localhost:8000.  Navigate your browser there and enjoy.</p>
+<p>To use the Finnegan network separately, from capstone/finnegan:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="kn">from</span> <span class="nn">network</span> <span class="kn">import</span> <span class="n">Network</span>
+</pre></div>
+</div>
+<p>Create an instance from the class:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">net</span> <span class="o">=</span> <span class="n">Network</span><span class="p">(</span><span class="n">layers</span><span class="p">,</span> <span class="n">neuron_count</span><span class="p">,</span> <span class="n">vector</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Where:
+- layers is number of layers including the output layer
+- neuron_count is a list of integers representing the number of neurons per layer, with the output layer being the last in the list (and therefor should be the total number of possible classifications).
+- vector is a sample input vector (for determining size and shape)</p>
+<p>Then:</p>
+<div class="highlight-python"><div class="highlight"><pre><span class="n">net</span><span class="o">.</span><span class="n">train</span><span class="p">(</span><span class="n">dataset</span><span class="p">,</span> <span class="n">answers</span><span class="p">,</span> <span class="n">epcohs</span><span class="p">)</span>
+<span class="n">guesses</span> <span class="o">=</span> <span class="n">net</span><span class="o">.</span><span class="n">run_unseen</span><span class="p">(</span><span class="n">test_dataset</span><span class="p">)</span>
+<span class="n">net</span><span class="o">.</span><span class="n">report_results</span><span class="p">(</span><span class="n">guesses</span><span class="p">,</span> <span class="n">test_answers</span><span class="p">)</span>
+</pre></div>
+</div>
+<p>Will train the net, and provide a report on the success of guessing against the test set.</p>
+</div>
+<div class="section" id="acknowledgements">
+<h2>Acknowledgements<a class="headerlink" href="#acknowledgements" title="Permalink to this headline">¶</a></h2>
+<p>sketch.js is a javascript/jquery tool for capturing user input on an html canvas.  Borrowed and modified from <a class="reference external" href="http://intridea.github.io/sketch.js/">here</a>.</p>
+<p>The blog <a class="reference external" href="http://iamtrask.github.io/2015/07/12/basic-python-network/">I Am Trask</a> provided me with the key insight to vectorize each layer as a single unit and thereby get rid of the for loops as that took FOREVER to run.</p>
+</div>
 </div>
 
 
