@@ -10,4 +10,7 @@ img_the_scream.jpg
 !.elasticbeanstalk/*.cfg.yml
 !.elasticbeanstalk/*.global.yml
 .ssh/
-net/db_pass.txt net/db_user.txt net/secret_key.txt
+
+
+net/*.txt
+
