@@ -20,7 +20,9 @@ BASE_DIR = os.path.dirname(os.path.dirname(os.path.abspath(__file__)))
 # See https://docs.djangoproject.com/en/1.8/howto/deployment/checklist/
 
 # SECURITY WARNING: keep the secret key used in production secret!
-SECRET_KEY = 'vi60(4nth@vta_d1ow@57l+0wko8bru)ir)a9lcuwza%g9nky2'
+
+with open('/Users/uglyboxer/repos/capstone/net/secret_key.txt') as f:
+    SECRET_KEY = f.read().strip()
 
 # SECURITY WARNING: don't run with debug turned on in production!
 DEBUG = True
@@ -75,13 +77,18 @@ WSGI_APPLICATION = 'net.wsgi.application'
 # Database
 # https://docs.djangoproject.com/en/1.8/ref/settings/#databases
 
+with open('/Users/uglyboxer/repos/capstone/net/db_user.txt') as g:
+    DB_USER = g.read().strip()
+
+with open('/Users/uglyboxer/repos/capstone/net/db_pass.txt') as h:
+    DB_PASS = h.read().strip()
 
 DATABASES = {
     'default': {
         'ENGINE': 'django.db.backends.postgresql_psycopg2',
         'NAME': 'netdb',
-        'USER': '',
-        'PASSWORD': '',
+        'USER': DB_USER,
+        'PASSWORD': DB_PASS,
         'HOST': 'localhost',
         'PORT': '5432',
     }

@@ -27,5 +27,5 @@ urlpatterns = [
     url(r'about/', views.about, name='about'),
     url(r'contact/', views.contact, name='contact'),
     url(r'stats/', views.stats_work, name='stats_work'),
-    # url(r'^admin/', include(admin.site.urls)),
+    url(r'^admin/', include(admin.site.urls)),
 ]
