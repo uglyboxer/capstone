@@ -20,7 +20,7 @@ sketch.js is a library created by [Michael Bleigh](http://intridea.github.io/ske
 
 ## To Get Started
 
-Navigate to: [Finnegan](https:uglyboxer.pythonanywhere.com)
+Navigate to: [Finnegan](http://uglyboxer.pythonanywhere.com)
 
 
 The baseline architecture for the net is on Github, [here](http://uglyboxer.github.io/finnegan/), and the code for the webapp (including Finnegan) be found [here](https://github.com/uglyboxer/capstone).
