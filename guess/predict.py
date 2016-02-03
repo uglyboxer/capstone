@@ -43,7 +43,7 @@ def parse_to_test_sample(info):
         # and confidence
 
         net_guess = run_test(small_image)
-        val_guess = net_guess
+        val_guess = net_guess[0]
         net_confidence = .99
 
     else:

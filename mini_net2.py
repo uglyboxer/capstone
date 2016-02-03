@@ -31,10 +31,6 @@ nb_pool = 2
 nb_conv = 3
 
 
-def padwithtens(vector, pad_width, iaxis, kwargs):
-    vector[:pad_width[0]] = 0
-    vector[-pad_width[1]:] = 0
-    return vector
 
 
 def initialize_model():
@@ -60,14 +56,14 @@ def initialize_model():
     model.compile(loss='categorical_crossentropy', optimizer='adadelta')
 
     print("loading weights")
-    model.load_weights('results1/my_model_weights.h5')
+    model.load_weights('my_model_weights.h5')
     return model
 
 
 def run_test(vector):
     model = initialize_model()
     testX = np.array(vector).reshape(40, 40)
-    testX = pad(testX, 6, padwithtens).flatten()
+    print(testX.shape)
     testX = testX.reshape(1, 1, img_rows, img_cols)
     testY = model.predict_classes(testX, verbose=2)
     return testY
