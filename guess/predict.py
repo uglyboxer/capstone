@@ -4,7 +4,7 @@ a pre-trained neural net then store results in a pre-existing database
 from guess.models import Drawing
 
 from finnegan.img_handler import downsize
-from mini_net import run_mnist
+from mini_net2 import run_test
 
 
 def parse_to_test_sample(info):
@@ -23,7 +23,7 @@ def parse_to_test_sample(info):
     """
 
     orig_size = 174
-    train_data_size = 28
+    train_data_size = 40
     if info != "no info":
 
         # Split payload into a list of floats and discard the rgb values
@@ -42,9 +42,9 @@ def parse_to_test_sample(info):
         # Pass it through the pre-trainedd network and retrieve a guess
         # and confidence
 
-        net_guess = run_mnist(small_image)[0]
-        val_guess = net_guess[0]
-        net_confidence = round(float(net_guess[1])*100, 2)
+        net_guess = run_test(small_image)
+        val_guess = net_guess
+        net_confidence = .99
 
     else:
         img_array = None
