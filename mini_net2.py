@@ -22,7 +22,7 @@ nb_classes = 10
 nb_epoch = 3
 
 # input image dimensions
-img_rows, img_cols = 40, 40
+img_rows, img_cols = 28, 28
 # number of convolutional filters to use
 nb_filters = 32
 # size of pooling area for max pooling
@@ -31,19 +31,18 @@ nb_pool = 2
 nb_conv = 3
 
 
-
-
 def initialize_model():
     print("loading model")
     model = Sequential()
 
-    model.add(Convolution2D(nb_filters, nb_conv, nb_conv,
+    model.add(Convolution2D(8, 5, 5,
                             border_mode='valid',
                             input_shape=(1, img_rows, img_cols)))
     model.add(Activation('relu'))
-    model.add(Convolution2D(nb_filters, nb_conv, nb_conv))
-    model.add(Activation('relu'))
     model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
+    model.add(Convolution2D(16, 5, 5))
+    model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(3, 3)))
     model.add(Dropout(0.25))
 
     model.add(Flatten())
@@ -62,7 +61,7 @@ def initialize_model():
 
 def run_test(vector):
     model = initialize_model()
-    testX = np.array(vector).reshape(40, 40)
+    testX = np.array(vector).reshape(28, 28)
     print(testX.shape)
     testX = testX.reshape(1, 1, img_rows, img_cols)
     testY = model.predict_classes(testX, verbose=2)

@@ -23,7 +23,7 @@ def parse_to_test_sample(info):
     """
 
     orig_size = 174
-    train_data_size = 40
+    train_data_size = 28
     if info != "no info":
 
         # Split payload into a list of floats and discard the rgb values
