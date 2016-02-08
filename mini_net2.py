@@ -22,7 +22,7 @@ nb_classes = 10
 nb_epoch = 3
 
 # input image dimensions
-img_rows, img_cols = 28, 28
+img_rows, img_cols = 40, 40
 # number of convolutional filters to use
 nb_filters = 32
 # size of pooling area for max pooling
@@ -39,23 +39,26 @@ def initialize_model():
                             border_mode='valid',
                             input_shape=(1, img_rows, img_cols)))
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
-    model.add(Convolution2D(16, 5, 5))
+    model.add(Convolution2D(16, nb_conv, nb_conv))
     model.add(Activation('relu'))
-    model.add(MaxPooling2D(pool_size=(3, 3)))
+    # model.add(Convolution2D(120, nb_conv, nb_conv))
+    # model.add(Activation('relu'))
+    model.add(MaxPooling2D(pool_size=(nb_pool, nb_pool)))
     model.add(Dropout(0.25))
 
     model.add(Flatten())
-    model.add(Dense(128))
+    model.add(Dense(150))
     model.add(Activation('relu'))
     model.add(Dropout(0.5))
     model.add(Dense(nb_classes))
     model.add(Activation('softmax'))
+    # EarlyStopping(monitor='val_loss')
 
     model.compile(loss='categorical_crossentropy', optimizer='adadelta')
 
+
     print("loading weights")
-    model.load_weights('my_model_weights.h5')
+    model.load_weights('my_model_weights1.h5')
     return model
 
 

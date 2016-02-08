@@ -5,7 +5,12 @@ from guess.models import Drawing
 
 from finnegan.img_handler import downsize
 from mini_net2 import run_test
+from skimage.util import pad
 
+def padwithtens(vector, pad_width, iaxis, kwargs):
+    vector[:pad_width[0]] = 0
+    vector[-pad_width[1]:] = 0
+    return vector
 
 def parse_to_test_sample(info):
     """  Takes the info retrieved from the script.js implementation on main
@@ -23,7 +28,7 @@ def parse_to_test_sample(info):
     """
 
     orig_size = 174
-    train_data_size = 28
+    train_data_size = 32
     if info != "no info":
 
         # Split payload into a list of floats and discard the rgb values
@@ -37,7 +42,8 @@ def parse_to_test_sample(info):
         # data
 
         small_image = downsize(img_array, orig_size, train_data_size)
-        small_image_list = small_image.flatten().tolist()
+        small_image = pad(small_image, 4, padwithtens).flatten()
+        small_image_list = small_image.tolist()
 
         # Pass it through the pre-trainedd network and retrieve a guess
         # and confidence
