@@ -8,19 +8,21 @@ A custom neural net for recoginzing handwritten digits, with a serious nod to [I
 
 sketch.js is a library created by [Michael Bleigh](http://intridea.github.io/sketch.js/) to allow the user to draw the image of a digit.  It has been modified to pull a drawn image from the page before being resized and sent to the neural network for classifaciton.
 
-## TODO
-
-- Analyze Results
-- Analyze correlation of misclassification and actual numbers (7's tend to be classified as 2, etc.)
-- Train net on rotated, skewed, scaled images for more robust recognition
-- Visualizations of each layer of the net (in d3 or bokeh)
-- Provide a selection of neural net architectures to allow a user to swap out and see the different vizualations and results.  (Results data will be stored by specific architecture.)
-
-
 
 ## To Get Started
 
-Navigate to: [Finnegan](https:uglyboxer.pythonanywhere.com)
+Requires running PostgreSQL server.  Create a new database named 'netdb'
+```
+createdb netdb
+```
+Clone the repo locally, then install the requirements:
+```
+pip install -r requirements.txt
+python3 manage.py loaddata guess/fixtures/initial_data.json
+python3 manage.py runserver
+```
+
+Then navigate to localhost:8000 on your browser and draw away1
 
 
 The baseline architecture for the net is on Github, [here](http://uglyboxer.github.io/finnegan/), and the code for the webapp (including Finnegan) be found [here](https://github.com/uglyboxer/capstone).

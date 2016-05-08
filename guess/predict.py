@@ -43,7 +43,6 @@ def parse_to_test_sample(info):
         # data
 
         small_image = downsize(img_array, orig_size, train_data_size)
-        # small_image = pad(small_image, 4, padwithtens).flatten()
         small_image_list = small_image.flatten().tolist()
 
         # Pass it through the pre-trainedd network and retrieve a guess
@@ -57,11 +56,8 @@ def parse_to_test_sample(info):
     else:
         img_array = None
 
-    print(type(small_image_list[0]))
-    print("^ sm img lst")
     Drawing.objects.create(values_array=orig_img,
                            guess=val_guess,
                            confidence=net_confidence,
                            tiny_array=small_image_list,
                            correct=False)
-    print("still goin")

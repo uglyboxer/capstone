@@ -42,7 +42,7 @@
             <span class="icon-bar"></span>
             <span class="icon-bar"></span>
           </button>
-          <a class="navbar-brand" href="/">Finnegan</a>
+          <a class="navbar-brand" href="/">Finnegan 1.1</a>
         </div>
         <div id="navbar" class="collapse navbar-collapse">
           <ul class="nav navbar-nav">
@@ -58,6 +58,7 @@
 
       <div class="starter-template">
         <h1>Neural Net Digit Recognizer</h1>
+        <h2>Now with convolutions!</h2>
         <p class="lead"></p>
       </div>
 
@@ -81,13 +82,11 @@
 
       var large_img = {{ drawing_obj.values_array }};
       var canvas = document.getElementById('repo1');
-      // var lg_img_array = Uint8ClampedArray.from(large_img);
       var ctx = canvas.getContext('2d');
       var imgData=ctx.createImageData(174,174);
       for (var j=0; j<imgData.length; j++) {
         imgData.data[j] = 0;
       }
-      // console.log(large_img);
       for (var i=0; i < large_img.length; i++) {
         imgData.data[(i*4)+3] = large_img[i];
       }
