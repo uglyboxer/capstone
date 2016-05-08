@@ -28,7 +28,7 @@ def parse_to_test_sample(info):
     """
 
     orig_size = 174
-    train_data_size = 32
+    train_data_size = 40
     if info != "no info":
 
         # Split payload into a list of floats and discard the rgb values
@@ -42,7 +42,7 @@ def parse_to_test_sample(info):
         # data
 
         small_image = downsize(img_array, orig_size, train_data_size)
-        small_image = pad(small_image, 4, padwithtens).flatten()
+        # small_image = pad(small_image, 4, padwithtens).flatten()
         small_image_list = small_image.tolist()
 
         # Pass it through the pre-trainedd network and retrieve a guess
@@ -50,13 +50,15 @@ def parse_to_test_sample(info):
 
         net_guess = run_test(small_image)
         val_guess = net_guess[0]
-        net_confidence = .99
+        net_confidence = net_guess[1]
+
 
     else:
         img_array = None
 
     Drawing.objects.create(values_array=img_array,
                            guess=val_guess,
-                           confidence=net_confidence,
-                           tiny_array=small_image_list,
-                           correct=False)
+                           confidence=net_confidence)
+                           # tiny_array=small_image_list)
+                           # correct=False)
+    print("still goin")
