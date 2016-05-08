@@ -24,7 +24,6 @@ python3 manage.py runserver
 
 Then navigate to localhost:8000 on your browser and draw away1
 
-
 The baseline architecture for the net is on Github, [here](http://uglyboxer.github.io/finnegan/), and the code for the webapp (including Finnegan) be found [here](https://github.com/uglyboxer/capstone).
 
 Full documentation hosted [here](http://capstone.rtfd.org)
