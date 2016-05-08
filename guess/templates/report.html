@@ -64,7 +64,7 @@
     <canvas id='repo1' width="174" height="174"></canvas>
 
     <h5 class='answer'>Looks like a {{ drawing_obj.guess }} to me!</h5>
-    <h5 class='answer'>I'm {{ drawing_obj.confidence }}% sure.</h5>
+    <h5 class='answer'>I'm {{ drawing_obj.confidence|floatformat:-2 }}% sure.</h5>
     <h5 class='answer'>How'd I do?</h5>
     <form action='/validate/' method='post'>
       {% csrf_token %}
@@ -80,7 +80,6 @@
     <script type="text/javascript">
 
       var large_img = {{ drawing_obj.values_array }};
-      var small_img = {{ drawing_obj.tiny_array }};
       var canvas = document.getElementById('repo1');
       // var lg_img_array = Uint8ClampedArray.from(large_img);
       var ctx = canvas.getContext('2d');
@@ -88,6 +87,7 @@
       for (var j=0; j<imgData.length; j++) {
         imgData.data[j] = 0;
       }
+      // console.log(large_img);
       for (var i=0; i < large_img.length; i++) {
         imgData.data[(i*4)+3] = large_img[i];
       }

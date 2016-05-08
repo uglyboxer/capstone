@@ -36,29 +36,32 @@ def parse_to_test_sample(info):
         # the sketch.js output)
 
         temp_array = info.split(',')
-        img_array = [float(x) for x in temp_array[3::4]]
+        orig_img = [float(x) for x in temp_array[3::4]]
+        img_array = [float(x)/255 for x in temp_array[3::4]]
 
         # Resize the image to match the size of the network's training
         # data
 
         small_image = downsize(img_array, orig_size, train_data_size)
         # small_image = pad(small_image, 4, padwithtens).flatten()
-        small_image_list = small_image.tolist()
+        small_image_list = small_image.flatten().tolist()
 
         # Pass it through the pre-trainedd network and retrieve a guess
         # and confidence
 
         net_guess = run_test(small_image)
         val_guess = net_guess[0]
-        net_confidence = net_guess[1]
+        net_confidence = net_guess[1] * 100
 
 
     else:
         img_array = None
 
-    Drawing.objects.create(values_array=img_array,
+    print(type(small_image_list[0]))
+    print("^ sm img lst")
+    Drawing.objects.create(values_array=orig_img,
                            guess=val_guess,
-                           confidence=net_confidence)
-                           # tiny_array=small_image_list)
-                           # correct=False)
+                           confidence=net_confidence,
+                           tiny_array=small_image_list,
+                           correct=False)
     print("still goin")
