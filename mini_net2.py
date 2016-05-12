@@ -35,6 +35,7 @@ def initialize_model():
 
 
 def run_test(vector):
+    print("calling init")
     model = initialize_model()
 
     testX = np.array(vector).reshape(40, 40)

@@ -6,11 +6,11 @@ from django.db.models import Sum
 from guess.models import Drawing, Stats
 from guess.predict import parse_to_test_sample
 
-import logging
+# import logging
 
 
-logging.basicConfig(filename='badness.log', level=logging.DEBUG)
-logger = logging.getLogger(__name__)
+# logging.basicConfig(filename='badness.log', level=logging.DEBUG)
+# logger = logging.getLogger(__name__)
 
 
 def home_page(request):
@@ -34,7 +34,7 @@ def parse_data(request):
         parse_to_test_sample(info)
         return HttpResponse()
     except:
-        logger.exception('New way')
+        # logger.exception('New way')
         return render(request, 'home.html')
 
 
@@ -75,7 +75,7 @@ def valid_info(request):
         fail_stat.incorrectly_guessed += 1
         fail_stat.save()
 
-    return redirect('/')
+    return render(request, 'home.html')
 
 
 def stats_work(request):

@@ -5,12 +5,12 @@ from guess.models import Drawing
 
 from finnegan.img_handler import downsize
 from mini_net2 import run_test
-from skimage.util import pad
+# from skimage.util import pad
 
-def padwithtens(vector, pad_width, iaxis, kwargs):
-    vector[:pad_width[0]] = 0
-    vector[-pad_width[1]:] = 0
-    return vector
+# def padwithtens(vector, pad_width, iaxis, kwargs):
+#     vector[:pad_width[0]] = 0
+#     vector[-pad_width[1]:] = 0
+#     return vector
 
 def parse_to_test_sample(info):
     """  Takes the info retrieved from the script.js implementation on main
