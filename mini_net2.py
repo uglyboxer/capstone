@@ -9,7 +9,6 @@ import numpy as np
 
 
 def initialize_model():
-    print("build the model")
     model = Sequential()
     model.add(Convolution2D(20, 5, 5, border_mode='valid', input_shape=(1, 40, 40)))
     model.add(Activation('relu'))
@@ -29,24 +28,17 @@ def initialize_model():
                   metrics=['accuracy'])
 
 
-    print("loading weights")
     model.load_weights('weights.hdf5') 
     return model
 
 
 def run_test(vector):
-    print("calling init")
     model = initialize_model()
 
     testX = np.array(vector).reshape(40, 40)
-    print(testX.shape)
     testX = testX.reshape(1, 1, 40, 40)
     testY = model.predict(testX)
-    print(np.argmax(testY))
     ans_val = np.argmax(testY)
     ans = [ans_val, float(testY[0][ans_val])]
     
-    print("what is conf")
-    print(type(ans[1]))
-
     return ans

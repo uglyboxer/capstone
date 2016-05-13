@@ -14,7 +14,18 @@
     <canvas id="colors_sketch" width="174" height="174"></canvas>
     <a id='sub_button' href="#colors_sketch" data-download="png"><button>Submit</button></a>
     </form>
-
+    <script type="text/javascript">
+      var d = document;
+      var subButton = d.getElementById("sub_button");
+      subButton.addEventListener("click", function(){
+        this.style.display = "none";
+        var spinny = d.getElementById("spinny");
+        spinny.style.display = "block";
+      })
+    </script>
+    <div id="spinny" style="display:none">
+    <i class="fa fa-spinner fa-spin" style="font-size:24px;display:block;margin:100 auto"></i>
+</div>  
     <button class='stats_button'><a href='/uglyboxer/stats/'>Go To Stats Page</a></button>
 
 {% endblock %}
