@@ -49,7 +49,10 @@ def show_data(request):
 
     """
     drawing_obj = Drawing.objects.all().order_by('id').reverse()[0]
-    return render(request, 'report.html', {'drawing_obj': drawing_obj})
+    if drawing_obj.confidence < 89:
+        return render(request, 'messing.html', {'drawing_obj': drawing_obj})
+    else:
+        return render(request, 'report.html', {'drawing_obj': drawing_obj})
 
 
 @require_POST
