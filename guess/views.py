@@ -48,7 +48,7 @@ def show_data(request):
       The last line from the database (specifically the most recent entry).
 
     """
-    drawing_obj = Drawing.objects.all().order_by('id').reverse()[0]
+    drawing_obj = Drawing.objects.all().order_by('-id')[0]
     if drawing_obj.confidence < 89:
         return render(request, 'messing.html', {'drawing_obj': drawing_obj})
     else:
@@ -78,8 +78,7 @@ def valid_info(request):
         fail_stat.incorrectly_guessed += 1
         fail_stat.save()
 
-    return render(request, 'home.html')
-
+    return redirect('/')
 
 def stats_work(request):
     """ Work out statistics for results """
